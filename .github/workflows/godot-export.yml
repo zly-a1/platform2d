@@ -40,6 +40,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
+          tag_name: 1.0.0
           files: | 
               ./build/windows/**
 
@@ -72,6 +73,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
+          tag_name: 1.0.0
           files: | 
               ./build/linux/**
 
@@ -104,6 +106,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
+          tag_name: 1.0.0
           files: | 
               ./build/web/**
 
@@ -145,5 +148,6 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
+          tag_name: 1.0.0
           files: | 
               ./build/mac/**

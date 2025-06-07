@@ -851,10 +851,10 @@ script = ExtResource("1_6npl2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphics"]
 position = Vector2(0, -4)
-texture = ExtResource("1_6c3n4")
-hframes = 11
+texture = ExtResource("8_redxr")
+hframes = 8
 region_enabled = true
-region_rect = Rect2(0, 0, 352, 32)
+region_rect = Rect2(0, 0, 768, 96)
 
 [node name="Hurter" type="Area2D" parent="Graphics"]
 collision_layer = 2
@@ -863,6 +863,7 @@ script = ExtResource("9_gcno4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter"]
 shape = SubResource("RectangleShape2D_qwvj0")
+disabled = true
 
 [node name="Hitter" type="Area2D" parent="Graphics"]
 collision_layer = 2

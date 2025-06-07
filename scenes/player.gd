@@ -16,7 +16,7 @@ enum State{
 signal died()
 
 @onready var sprite_2d = $Graphics/Sprite2D
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var coyote = $coyote
 @onready var state_machine:StateMachine = $StateMachine
 @onready var super_time = $SuperTime

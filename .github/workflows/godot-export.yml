@@ -36,6 +36,12 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.release_token }} 
+          files: | 
+              ./build/windows/**
 
   export-linux:
     name: Linux Export
@@ -62,6 +68,12 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.release_token }} 
+          files: | 
+              ./build/linux/**
 
   export-web:
     name: Web Export
@@ -88,6 +100,13 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.release_token }} 
+          files: | 
+              ./build/web/**
+
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
@@ -122,3 +141,9 @@ jobs:
         with:
           name: mac
           path: build/mac
+      - name: Release 
+        uses: softprops/action-gh-release@v2.2.2 
+        with: 
+          token: ${{ secrets.release_token }} 
+          files: | 
+              ./build/mac/**

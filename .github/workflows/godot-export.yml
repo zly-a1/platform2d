@@ -36,13 +36,18 @@ jobs:
         with:
           name: windows
           path: build/windows
+      - name: Create Zip
+        run: |
+          cd ./build
+          apt install zip
+          zip windows-x64.zip ./build/windows
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
           tag_name: 1.0.0
           files: | 
-              ./build/windows/**
+              ./build/windows-x64.zip
 
   export-linux:
     name: Linux Export
@@ -63,19 +68,24 @@ jobs:
           mkdir -v -p build/linux
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-release "Linux/X11" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
+          godot --headless --verbose --export-release "Linux" "$EXPORT_DIR/linux/$EXPORT_NAME.x86_64"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: linux
           path: build/linux
+      - name: Create Zip
+        run: |
+          cd ./build
+          apt install zip
+          zip linux-x64.zip ./build/linux
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
           tag_name: 1.0.0
           files: | 
-              ./build/linux/**
+              ./build/linux-x64.zip
 
   export-web:
     name: Web Export
@@ -102,13 +112,18 @@ jobs:
         with:
           name: web
           path: build/web
+      - name: Create Zip
+        run: |
+          cd ./build
+          apt install zip
+          zip web.zip ./build/web
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
           tag_name: 1.0.0
           files: | 
-              ./build/web/**
+              ./build/web.zip
 
       - name: Install rsync 📚
         run: |
@@ -144,10 +159,15 @@ jobs:
         with:
           name: mac
           path: build/mac
+      - name: Create Zip
+        run: |
+          cd ./build
+          apt install zip
+          zip mac-x64.zip ./build/mac
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
           tag_name: 1.0.0
           files: | 
-              ./build/mac/**
+              ./build/mac-x64.zip

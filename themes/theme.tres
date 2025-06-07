@@ -1,0 +1,84 @@
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dq2k6takiambk"]
+
+[ext_resource type="FontFile" uid="uid://e1c5numihd1e" path="res://themes/fonts/fusion.ttf" id="1_ip8lb"]
+[ext_resource type="Texture2D" uid="uid://cxpo33b0qlsyf" path="res://assets/Menu/HUD.png" id="2_m47i4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ls7it"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oryc4"]
+texture = ExtResource("2_m47i4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(94, 14, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1mhw"]
+atlas = ExtResource("2_m47i4")
+region = Rect2(4, 100, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjpa6"]
+atlas = ExtResource("2_m47i4")
+region = Rect2(20, 84, 8, 8)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vydx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oryc4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgv31"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jrwdk"]
+texture = ExtResource("2_m47i4")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(3, 130, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wa65"]
+atlas = ExtResource("2_m47i4")
+region = Rect2(16, 224, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t51y8"]
+texture = SubResource("AtlasTexture_3wa65")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 48, 48)
+
+[resource]
+AcceptDialog/font_sizes/title_font_size = 16
+AcceptDialog/fonts/title_font = ExtResource("1_ip8lb")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(1, 1, 1, 0.498039)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 0.498039)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 0.498039)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 10
+Button/fonts/font = ExtResource("1_ip8lb")
+Button/styles/disabled = SubResource("StyleBoxEmpty_ls7it")
+Button/styles/focus = SubResource("StyleBoxTexture_oryc4")
+Button/styles/hover = SubResource("StyleBoxTexture_oryc4")
+Button/styles/normal = SubResource("StyleBoxEmpty_ls7it")
+Button/styles/pressed = SubResource("StyleBoxEmpty_ls7it")
+HBoxContainer/constants/separation = 4
+HSlider/constants/center_grabber = 0
+HSlider/icons/grabber = SubResource("AtlasTexture_n1mhw")
+HSlider/icons/grabber_disabled = SubResource("AtlasTexture_n1mhw")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_rjpa6")
+HSlider/icons/tick = SubResource("PlaceholderTexture2D_0vydx")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_oryc4")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_kgv31")
+HSlider/styles/slider = SubResource("StyleBoxTexture_jrwdk")
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.870588)
+Label/constants/outline_size = 1
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 10
+Label/fonts/font = ExtResource("1_ip8lb")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_t51y8")

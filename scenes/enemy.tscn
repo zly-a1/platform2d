@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0if24aritjfw"]
+
+[ext_resource type="Script" uid="uid://dvpm46sxsdvxi" path="res://classes/StateMachine.gd" id="1_8eahb"]
+[ext_resource type="Script" uid="uid://yqft5ntybu2d" path="res://scenes/enemy.gd" id="1_ieiqb"]
+[ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="2_y1m0c"]
+[ext_resource type="Script" uid="uid://co0qwrre8i7w7" path="res://classes/Hurter.gd" id="3_ygnln"]
+[ext_resource type="Script" uid="uid://clfunqr5x6xet" path="res://classes/Status.gd" id="5_c4w8v"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ieiqb")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Hitter" type="Area2D" parent="Graphics"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_y1m0c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+
+[node name="Wall" type="RayCast2D" parent="Graphics"]
+position = Vector2(-20, 5)
+target_position = Vector2(-11, 0)
+
+[node name="PlayerChecker" type="RayCast2D" parent="Graphics"]
+position = Vector2(-20, 5)
+target_position = Vector2(-54, 0)
+collision_mask = 2
+
+[node name="Floor" type="RayCast2D" parent="Graphics"]
+position = Vector2(-20, 15)
+target_position = Vector2(0, 8)
+
+[node name="Hurter" type="Area2D" parent="Graphics"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_ygnln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_8eahb")
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("5_c4w8v")
+health = 3

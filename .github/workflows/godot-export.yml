@@ -37,10 +37,9 @@ jobs:
           name: windows
           path: build/windows
       - name: Create Zip
-        run: |
-          cd ./build
-          apt install zip
-          zip windows-x64.zip ./build/windows
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ./build/windows-x64.zip ./build/windows
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
@@ -74,11 +73,11 @@ jobs:
         with:
           name: linux
           path: build/linux
+      
       - name: Create Zip
-        run: |
-          cd ./build
-          apt install zip
-          zip linux-x64.zip ./build/linux
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ./build/linux-x64.zip ./build/linux
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
@@ -112,11 +111,11 @@ jobs:
         with:
           name: web
           path: build/web
+      
       - name: Create Zip
-        run: |
-          cd ./build
-          apt install zip
-          zip web.zip ./build/web
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ./build/web.zip ./build/web
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 
@@ -159,11 +158,11 @@ jobs:
         with:
           name: mac
           path: build/mac
+      
       - name: Create Zip
-        run: |
-          cd ./build
-          apt install zip
-          zip mac-x64.zip ./build/mac
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ./build/mac-x64.zip ./build/mac
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
         with: 

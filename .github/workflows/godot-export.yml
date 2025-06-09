@@ -52,7 +52,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
-          tag_name: $RELEASE_VERSION
+          tag_name: ${RELEASE_VERSION}
           files: | 
               ./build/windows-x64.zip
       
@@ -91,7 +91,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
-          tag_name: $RELEASE_VERSION
+          tag_name: ${RELEASE_VERSION}
           files: | 
               ./build/linux-x64.zip
 
@@ -129,7 +129,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
-          tag_name: $RELEASE_VERSION
+          tag_name: ${RELEASE_VERSION}
           files: | 
               ./build/web.zip
 
@@ -176,7 +176,7 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
-          tag_name: $RELEASE_VERSION
+          tag_name: ${RELEASE_VERSION}
           files: | 
               ./build/mac-x64.zip
   export-android:
@@ -219,6 +219,6 @@ jobs:
         uses: softprops/action-gh-release@v2.2.2 
         with: 
           token: ${{ secrets.release_token }} 
-          tag_name: $RELEASE_VERSION
+          tag_name: ${RELEASE_VERSION}
           files: | 
               ./build/android/platform2d.apk

@@ -756,9 +756,9 @@ _data = {
 &"walljump": SubResource("Animation_xrlt0")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_60mlk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5pv"]
 atlas = ExtResource("15_4r5pv")
-region = Rect2(308, 103, 31, 2)
+region = Rect2(308, 103, 18, 2)
 
 [sub_resource type="Animation" id="Animation_60mlk"]
 length = 0.001
@@ -918,9 +918,9 @@ region_rect = Rect2(161, 65, 14, 13)
 
 [node name="Hurttip" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(0.917647, 0.513726, 0.941176, 1)
+modulate = Color(1, 0.466667, 1, 1)
 position = Vector2(0, -24)
-texture = SubResource("AtlasTexture_60mlk")
+texture = SubResource("AtlasTexture_4r5pv")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {

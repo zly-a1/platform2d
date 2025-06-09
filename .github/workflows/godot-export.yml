@@ -195,9 +195,7 @@ jobs:
           java-version: '17' # The OpenJDK version to make available on the path
           architecture: 'x64' # defaults to 'x64'
       - name: Setup Android SDK
-         uses: android-actions/setup-android@v3
-         with:
-           packages: ''
+        uses: android-actions/setup-android@v3
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
@@ -213,9 +211,9 @@ jobs:
           mkdir -v -p build/android
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          sed 's@keystore/release=".*"@keystore/release="'/root/release.keystore'"@g' -i export_presets.cfg
-          sed 's@keystore/release_user=".*"@keystore/release_user="'$SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
-          sed 's@keystore/release_password=".*"@keystore/release_password="'$SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
+          sed -i '/\[preset.1.options\]/a keystore\/release="\/root\/release.keystore"' export_presets.cfg
+          sed -i '/keystore\/release="\/root\/release.keystore"/a keystore\/release_user="mygame"' export_presets.cfg
+          sed -i '/keystore\/release_user="mygame"/a keystore\/release_password=123456' export_presets.cfg
           godot --headless --verbose --export-release "Android" "$EXPORT_DIR/android/$EXPORT_NAME.apk"
       - name: Release 
         uses: softprops/action-gh-release@v2.2.2 
@@ -223,4 +221,4 @@ jobs:
           token: ${{ secrets.release_token }} 
           tag_name: $RELEASE_VERSION
           files: | 
-              $EXPORT_DIR/android/$EXPORT_NAME.apk
+              ./build/android/platform2d.apk

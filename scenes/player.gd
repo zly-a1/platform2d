@@ -14,7 +14,7 @@ enum State{
 }
 
 signal died()
-
+@onready var hurttip: Sprite2D = $Hurttip
 @onready var sprite_2d = $Graphics/Sprite2D
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var coyote = $coyote
@@ -237,6 +237,13 @@ func change_state(from:State,to:State)->void:
 		State.HURT:
 			animation_player.play("hurt")
 			SoundManager.play_sfx("Hurt")
+			hurttip.show()
+			var tween=create_tween()
+			tween.tween_property(hurttip,"scale",Vector2(0.0,1.0),4.0)
+			tween.finished.connect(func():
+				hurttip.hide()
+				hurttip.scale=Vector2(1.0,1.0)
+				)
 			GameProcesser.shake_camera(5.0)
 		State.DYING:
 			animation_player.play("dying")

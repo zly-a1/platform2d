@@ -218,3 +218,24 @@ jobs:
           tag_name: ${{ env.RELEASE_VERSION }}
           files: | 
               ./build/android/platform2d.apk
+      - name: get_butler
+        run: |
+
+          mkdir -p /opt/butler/bin 
+          cd /opt/butler/bin
+
+          wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+
+          export PATH=/opt/butler/bin/:$PATH
+          cd ~
+      - name: linux_deploy
+        run: |
+          butler push ./build/linux {{secrets.ITCHIO_USERNAME}}/{{secrets.ITCHIO_GAME}}:linux
+      - name: windows_deploy
+        run: |
+          butler push ./build/windows {{secrets.ITCHIO_USERNAME}}/{{secrets.ITCHIO_GAME}}:windows
+      - name: macos_deploy
+        run: |
+          butler push ./build/mac {{secrets.ITCHIO_USERNAME}}/{{secrets.ITCHIO_GAME}}:mac

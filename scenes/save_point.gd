@@ -19,20 +19,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter") and entering:
 		GameProcesser.save_game()
 		saved=true
-		var tip=Label.new()
-		tip.position=Vector2(get_viewport_rect().position.x+10,get_viewport_rect().end.y-20)
-		print(tip.position)
-		get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
-		tip.text="已存档"
-		tip.visible_characters=0
-		tip.theme=preload("res://themes/theme.tres") as Theme
-		var tween=create_tween()
-		tween.tween_property(tip,"visible_characters",3,0.2)
-		await get_tree().create_timer(1.0).timeout
-		tween=create_tween()
-		tween.tween_property(tip,"modulate:a",0,0.2)
-		await tween.finished
-		tip.queue_free()
+		GameProcesser.message_send("已存档")
 
 
 

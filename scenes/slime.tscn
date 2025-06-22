@@ -1,21 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://c78bswp0urruk"]
+[gd_scene load_steps=14 format=3 uid="uid://c78bswp0urruk"]
 
 [ext_resource type="PackedScene" uid="uid://c0if24aritjfw" path="res://scenes/enemy.tscn" id="1_gt117"]
 [ext_resource type="Script" uid="uid://crwd1niab5nd" path="res://scenes/slime.gd" id="2_1e8ai"]
-[ext_resource type="Texture2D" uid="uid://dufjagyyp7ejh" path="res://assets/Main Characters/slime/SpriteSheet/Idle.png" id="3_gstla"]
-[ext_resource type="Texture2D" uid="uid://do505fh8csitg" path="res://assets/Main Characters/slime/SpriteSheet/Attack.png" id="4_v5wyi"]
-[ext_resource type="Texture2D" uid="uid://cuhbj6048pocs" path="res://assets/Main Characters/slime/SpriteSheet/Death_2.png" id="5_0l8pv"]
-[ext_resource type="Texture2D" uid="uid://ciouanyn3xf1m" path="res://assets/Main Characters/slime/SpriteSheet/Hurt.png" id="6_vnioy"]
-[ext_resource type="Texture2D" uid="uid://cq0fsbsa01vda" path="res://assets/Main Characters/slime/SpriteSheet/Walk.png" id="7_2xjuo"]
+[ext_resource type="Texture2D" uid="uid://cnruhg4t0dfqh" path="res://assets/Main Characters/Slimer/slimer-idle.png" id="7_v5wyi"]
+[ext_resource type="Texture2D" uid="uid://bq2y0dbs8khm6" path="res://assets/Main Characters/Slimer/slimer.png" id="8_0l8pv"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_gstla"]
-length = 25.6246
+length = 41.0024
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5wyi"]
-radius = 8.0
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gstla"]
-radius = 7.07107
+radius = 9.0
 
 [sub_resource type="Animation" id="Animation_pu8ps"]
 length = 0.001
@@ -41,7 +38,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -65,7 +62,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_gstla")]
+"values": [ExtResource("7_v5wyi")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -82,258 +79,132 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Graphics/Hitter/CollisionShape2D:shape")
+tracks/5/path = NodePath("Graphics/Hurter/CollisionShape2D:shape")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("SeparationRayShape2D_gstla")]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Graphics/Hitter/CollisionShape2D:shape:length")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [25.6246]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Graphics/Hurter/CollisionShape2D:shape")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [SubResource("CircleShape2D_v5wyi")]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Hurter/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Sprite2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Graphics/Hurter/CollisionShape2D:disabled")
+tracks/8/path = NodePath("Graphics/Hitter/CollisionShape2D:shape")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [SubResource("SeparationRayShape2D_gstla")]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Graphics/Sprite2D:position")
+tracks/9/path = NodePath("Graphics/Hitter/CollisionShape2D:shape:length")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [41.0024]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Graphics/Sprite2D:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_a02ik"]
-resource_name = "attack"
-length = 0.8
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Sprite2D:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Graphics/Sprite2D:self_modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [16]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Graphics/Sprite2D:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Graphics/Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_v5wyi")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Graphics/Hitter/CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3, 0.55),
-"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Graphics/Hitter/CollisionShape2D:shape")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("SeparationRayShape2D_gstla")]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Graphics/Hitter/CollisionShape2D:shape:length")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.55),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [2.21752, 17.3705, 50.0, 6.65257]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Graphics/Sprite2D:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_g40cl"]
 resource_name = "dying"
-length = 0.6
+length = 0.9
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/0/path = NodePath("Graphics/Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8]
+"values": [Color(100, 100, 0, 1), Color(1, 1, 1, 1), Color(100, 100, 0, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Graphics/Sprite2D:vframes")
+tracks/1/path = NodePath("Graphics/Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Graphics/Sprite2D:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_0l8pv")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Graphics/Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"times": PackedFloat32Array(0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_cxm07"]
 resource_name = "hurt"
-length = 0.3
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/path = NodePath("Graphics/Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("6_vnioy")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Graphics/Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Graphics/Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
+"values": [Color(100, 100, 0, 1), Color(1, 1, 1, 1), Color(100, 100, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_g2qvl"]
@@ -351,7 +222,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_gstla")]
+"values": [ExtResource("7_v5wyi")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -363,7 +234,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -417,7 +288,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_2xjuo")]
+"values": [ExtResource("8_0l8pv")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -462,10 +333,10 @@ tracks/4/path = NodePath("Graphics/Hitter/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -479,11 +350,22 @@ tracks/5/keys = {
 "update": 1,
 "values": [Vector2(0, -5), Vector2(0, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Hitter/CollisionShape2D:shape:length")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [11.0, 40.0024, 11.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fur4c"]
 _data = {
 &"RESET": SubResource("Animation_pu8ps"),
-&"attack": SubResource("Animation_a02ik"),
 &"dying": SubResource("Animation_g40cl"),
 &"hurt": SubResource("Animation_cxm07"),
 &"idle": SubResource("Animation_g2qvl"),
@@ -491,20 +373,22 @@ _data = {
 }
 
 [node name="Slime" groups=["enemies"] instance=ExtResource("1_gt117")]
-position = Vector2(0, -5)
 script = ExtResource("2_1e8ai")
 direction = 1
 
+[node name="Hitter" parent="Graphics" index="0"]
+collision_mask = 18
+monitorable = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitter" index="0"]
-position = Vector2(6, -9)
-rotation = 1.19587
+position = Vector2(1.43051e-06, 5)
+rotation = 1.56823
 shape = SubResource("SeparationRayShape2D_gstla")
 disabled = true
 
 [node name="Sprite2D" parent="Graphics" index="1"]
-texture = ExtResource("3_gstla")
-flip_h = true
-hframes = 7
+texture = ExtResource("7_v5wyi")
+hframes = 8
 frame = 1
 
 [node name="Wall" parent="Graphics" index="2"]
@@ -517,6 +401,9 @@ target_position = Vector2(-21, 0)
 
 [node name="Floor" parent="Graphics" index="4"]
 position = Vector2(-13, 11)
+
+[node name="Hurter" parent="Graphics" index="5"]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0"]
 position = Vector2(0, 5)

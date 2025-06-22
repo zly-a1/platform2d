@@ -6,6 +6,7 @@ const DATA_PATH = "user://scenedata.tres"
 signal fix_camera
 
 var tween_started:bool=false
+var message_started:bool=false
 
 var scene_data:Dictionary={}
 var player_status:Dictionary={
@@ -252,3 +253,22 @@ func load_data():
 			"energy":100.0
 		}
 		current_scene="grass"
+
+func message_send(str: String):
+	if message_started:
+		return
+	var tip=Label.new()
+	var pl:Player=get_tree().get_first_node_in_group("player")
+	tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
+	get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
+	tip.text=str
+	tip.visible_characters=0
+	tip.theme=preload("res://themes/theme.tres") as Theme
+	var tween=create_tween()
+	tween.tween_property(tip,"visible_characters",str.length(),0.2)
+	await get_tree().create_timer(1.0).timeout
+	tween=create_tween()
+	tween.tween_property(tip,"modulate:a",0,0.2)
+	await tween.finished
+	tip.queue_free()
+	message_started=false

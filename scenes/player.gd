@@ -19,7 +19,7 @@ signal died()
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var coyote = $coyote
 @onready var state_machine:StateMachine = $StateMachine
-@onready var super_time = $SuperTime
+@onready var super_time:Timer = $SuperTime
 @onready var graphics = $Graphics
 @onready var status:Status = $Status
 @onready var hitter = $Graphics/Hitter

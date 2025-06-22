@@ -32,3 +32,4 @@ func show_panel():
 	show()
 	#get_tree().paused=true
 	animation_player.play("show")
+	SoundManager.play_sfx("GameOver")

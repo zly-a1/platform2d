@@ -25,7 +25,12 @@ func _process(delta: float) -> void:
 		if tween_started:
 			return
 		tween_started=true
-		player.status.health+=1
+		SoundManager.play_sfx("GetFruit")
+		match type:
+			FruitType.HEALTH:
+				player.status.health+=1
+			FruitType.ENERGY:
+				player.status.energy+=20
 		animated_sprite_2d.animation="collected"
 		await animated_sprite_2d.animation_finished
 		queue_free()

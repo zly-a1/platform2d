@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2uqsswiqmefx"]
+[gd_scene load_steps=12 format=3 uid="uid://d2uqsswiqmefx"]
 
 [ext_resource type="Script" uid="uid://lxoswkgnhn03" path="res://scenes/globals/sound_manager.gd" id="1_6w87p"]
 [ext_resource type="AudioStream" uid="uid://sids465to5lu" path="res://assets/sfx/07_human_atk_sword_1.ogg" id="2_1g1t8"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://c006rsldccc0t" path="res://assets/sfx/impactTin_medium_004.ogg" id="4_ms7c1"]
 [ext_resource type="AudioStream" uid="uid://dsmu88w02kfn" path="res://assets/sfx/walk.mp3" id="4_n1l54"]
 [ext_resource type="AudioStream" uid="uid://dqq3y8e0yrvjf" path="res://assets/sfx/impactGlass_heavy_004.ogg" id="5_mptlq"]
+[ext_resource type="AudioStream" uid="uid://due7fw2x82d6" path="res://assets/sfx/game_over.mp3" id="10_64lrx"]
+[ext_resource type="AudioStream" uid="uid://327f0y5aalpw" path="res://assets/sfx/fruit.mp3" id="11_nwrmn"]
 
 [node name="SoundManager" type="Node"]
 process_mode = 3
@@ -46,4 +48,12 @@ bus = &"SFX"
 
 [node name="Focus" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_mptlq")
+bus = &"SFX"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_64lrx")
+bus = &"SFX"
+
+[node name="GetFruit" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("11_nwrmn")
 bus = &"SFX"

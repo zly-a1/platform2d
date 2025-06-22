@@ -113,7 +113,7 @@ func _on_hurter_hurt(hitter):
 		is_hurt=true
 		can_hurt=false
 		var hit_ter:=hitter.owner as CharacterBody2D
-		
+		SoundManager.play_sfx("Hurt")
 		back_direction=-1 if (position- hit_ter.position).normalized().x<0 else 1
 	
 	if hitter.owner is Bullet:

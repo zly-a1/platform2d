@@ -46,6 +46,17 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_ygnln")
 
+[node name="HealthBar" type="TextureProgressBar" parent="Graphics"]
+offset_left = -23.0
+offset_top = -32.0
+offset_right = 35.0
+offset_bottom = -28.0
+scale = Vector2(0.8, 0.8)
+value = 50.0
+texture_under = SubResource("AtlasTexture_nenq2")
+texture_progress = SubResource("AtlasTexture_md484")
+texture_progress_offset = Vector2(1, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -57,14 +68,3 @@ script = ExtResource("1_8eahb")
 [node name="Status" type="Node" parent="."]
 script = ExtResource("5_c4w8v")
 health = 3
-
-[node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = -23.0
-offset_top = -32.0
-offset_right = 35.0
-offset_bottom = -28.0
-scale = Vector2(0.8, 0.8)
-value = 50.0
-texture_under = SubResource("AtlasTexture_nenq2")
-texture_progress = SubResource("AtlasTexture_md484")
-texture_progress_offset = Vector2(1, 1)

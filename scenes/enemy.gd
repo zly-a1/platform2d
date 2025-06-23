@@ -40,5 +40,5 @@ func hurt_back(speed:float,delta:float) -> void:
 
 
 func _process(delta: float) -> void:
-	$HealthBar.max_value=status.max_health
-	$HealthBar.value=status.health
+	$Graphics/HealthBar.max_value=status.max_health
+	$Graphics/HealthBar.value=status.health

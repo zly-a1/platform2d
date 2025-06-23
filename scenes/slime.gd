@@ -26,7 +26,7 @@ func tick_physics(state:State,delta:float):
 			move(0.0, delta)
 		
 		State.WALK:
-			move(max_speed / 3, delta)
+			move(max_speed / 2, delta)
 		State.HURT:
 			hurt_back(back_direction*max_speed,delta)
 		State.DYING:

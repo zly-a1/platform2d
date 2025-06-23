@@ -36,7 +36,7 @@ func get_next_state(state:State)->State:
 	
 	match state:
 		State.IDLE:
-			if state_machine.state_time>randf_range(1,4):
+			if state_machine.state_time>randf_range(0,1):
 				return State.WALK
 		State.WALK:
 			if wall.is_colliding() or not floorchker.is_colliding():

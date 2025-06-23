@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0if24aritjfw"]
+[gd_scene load_steps=9 format=3 uid="uid://c0if24aritjfw"]
 
 [ext_resource type="Script" uid="uid://dvpm46sxsdvxi" path="res://classes/StateMachine.gd" id="1_8eahb"]
 [ext_resource type="Script" uid="uid://yqft5ntybu2d" path="res://scenes/enemy.gd" id="1_ieiqb"]
 [ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="2_y1m0c"]
 [ext_resource type="Script" uid="uid://co0qwrre8i7w7" path="res://classes/Hurter.gd" id="3_ygnln"]
 [ext_resource type="Script" uid="uid://clfunqr5x6xet" path="res://classes/Status.gd" id="5_c4w8v"]
+[ext_resource type="Texture2D" uid="uid://cxpo33b0qlsyf" path="res://assets/Menu/HUD.png" id="6_xwavj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("6_xwavj")
+region = Rect2(307, 6, 58, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("6_xwavj")
+region = Rect2(308, 103, 56, 2)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -48,3 +57,14 @@ script = ExtResource("1_8eahb")
 [node name="Status" type="Node" parent="."]
 script = ExtResource("5_c4w8v")
 health = 3
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -32.0
+offset_right = 35.0
+offset_bottom = -28.0
+scale = Vector2(0.8, 0.8)
+value = 50.0
+texture_under = SubResource("AtlasTexture_nenq2")
+texture_progress = SubResource("AtlasTexture_md484")
+texture_progress_offset = Vector2(1, 1)

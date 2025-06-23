@@ -492,4 +492,7 @@ libraries = {
 wait_time = 2.5
 one_shot = true
 
+[node name="Status" parent="." index="5"]
+max_health = 3
+
 [connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

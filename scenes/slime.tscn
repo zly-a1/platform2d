@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c78bswp0urruk"]
+[gd_scene load_steps=15 format=3 uid="uid://c78bswp0urruk"]
 
 [ext_resource type="PackedScene" uid="uid://c0if24aritjfw" path="res://scenes/enemy.tscn" id="1_gt117"]
 [ext_resource type="Script" uid="uid://crwd1niab5nd" path="res://scenes/slime.gd" id="2_1e8ai"]
+[ext_resource type="Texture2D" uid="uid://dq0xxx7sn3ifj" path="res://assets/Main Characters/Slimer/slimer-Die.png" id="4_2npkn"]
 [ext_resource type="Texture2D" uid="uid://cnruhg4t0dfqh" path="res://assets/Main Characters/Slimer/slimer-idle.png" id="7_v5wyi"]
 [ext_resource type="Texture2D" uid="uid://bq2y0dbs8khm6" path="res://assets/Main Characters/Slimer/slimer.png" id="8_0l8pv"]
 
@@ -168,26 +169,62 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Sprite2D:modulate")
+tracks/0/path = NodePath("Graphics/Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Color(100, 100, 0, 1), Color(1, 1, 1, 1), Color(100, 100, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Graphics/Sprite2D:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0.5, 0.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_2npkn")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_cxm07"]
@@ -204,7 +241,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Color(100, 100, 0, 1), Color(1, 1, 1, 1), Color(100, 100, 0, 1), Color(1, 1, 1, 1)]
+"values": [Color(0.321569, 0.321569, 0.00392157, 1), Color(1, 1, 1, 1), Color(0.321569, 0.321569, 0.00392157, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_g2qvl"]
@@ -420,5 +457,6 @@ libraries = {
 
 [node name="Status" parent="." index="4"]
 health = 6
+max_health = 6
 
 [connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

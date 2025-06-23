@@ -18,7 +18,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	
 func _process(delta: float) -> void:
-	pass
+	super(delta)
 
 func tick_physics(state:State,delta:float):
 	match state:
@@ -78,6 +78,8 @@ func change_state(from:State,to:State):
 		State.DYING:
 			animation_player.play("dying")
 			GameProcesser.shake_camera(1.0)
+			var pl=get_tree().get_first_node_in_group("player") as Player
+			pl.status.energy+=10
 
 
 

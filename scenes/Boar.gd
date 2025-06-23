@@ -26,7 +26,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	
 func _process(delta: float) -> void:
-	pass
+	super(delta)
 
 func tick_physics(state:State,delta:float):
 	match state:

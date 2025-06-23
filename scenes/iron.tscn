@@ -17,8 +17,7 @@ size = Vector2(719, 139)
 
 [node name="iron" type="Node2D"]
 script = ExtResource("1_dttaf")
-metadata/_edit_horizontal_guides_ = [321.0, 272.0]
-metadata/_edit_vertical_guides_ = [900.0]
+metadata/_edit_horizontal_guides_ = [321.0]
 
 [node name="Portals" type="Node" parent="."]
 

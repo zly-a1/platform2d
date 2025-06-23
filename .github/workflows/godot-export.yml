@@ -58,7 +58,7 @@ jobs:
           cd /opt/butler/bin
 
           wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-          unzip butler.zip
+          unzip butler.zip -y
           chmod +x butler
 
           export PATH=/opt/butler/bin/:$PATH
@@ -111,7 +111,7 @@ jobs:
           cd /opt/butler/bin
 
           wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-          unzip butler.zip
+          unzip butler.zip -y
           chmod +x butler
 
           export PATH=/opt/butler/bin/:$PATH
@@ -211,7 +211,7 @@ jobs:
           cd /opt/butler/bin
 
           wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
-          unzip butler.zip
+          unzip butler.zip -y
           chmod +x butler
 
           export PATH=/opt/butler/bin/:$PATH

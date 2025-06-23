@@ -37,3 +37,8 @@ func hurt_back(speed:float,delta:float) -> void:
 	velocity.y *=default_gravity*delta
 	
 	move_and_slide()
+
+
+func _process(delta: float) -> void:
+	$HealthBar.max_value=status.max_health
+	$HealthBar.value=status.health

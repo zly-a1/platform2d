@@ -41,4 +41,5 @@ func hurt_back(speed:float,delta:float) -> void:
 
 func _process(delta: float) -> void:
 	$Graphics/HealthBar.max_value=status.max_health
+	$Graphics/HealthBar.scale=Vector2(-0.8*direction,0.8)
 	$Graphics/HealthBar.value=status.health

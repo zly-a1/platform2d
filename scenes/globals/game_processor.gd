@@ -257,6 +257,7 @@ func load_data():
 func message_send(str: String):
 	if message_started:
 		return
+	message_started=true
 	var tip=Label.new()
 	var pl:Player=get_tree().get_first_node_in_group("player")
 	tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
@@ -268,7 +269,7 @@ func message_send(str: String):
 	tween.tween_property(tip,"visible_characters",str.length(),0.2)
 	await get_tree().create_timer(1.0).timeout
 	tween=create_tween()
-	tween.tween_property(tip,"modulate:a",0,0.2)
+	tween.tween_property(tip,"modulate",Color(1.0,1.0,1.0,0.0),0.2)
 	await tween.finished
 	tip.queue_free()
 	message_started=false

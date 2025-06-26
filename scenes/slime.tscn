@@ -6,14 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://cnruhg4t0dfqh" path="res://assets/Main Characters/Slimer/slimer-idle.png" id="7_v5wyi"]
 [ext_resource type="Texture2D" uid="uid://bq2y0dbs8khm6" path="res://assets/Main Characters/Slimer/slimer.png" id="8_0l8pv"]
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_gstla"]
-length = 41.0024
+[sub_resource type="CircleShape2D" id="CircleShape2D_gstla"]
+radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5wyi"]
 radius = 13.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gstla"]
-radius = 9.0
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_gstla"]
+length = 41.0024
 
 [sub_resource type="Animation" id="Animation_pu8ps"]
 length = 0.001
@@ -389,6 +389,19 @@ _data = {
 script = ExtResource("2_1e8ai")
 direction = 1
 
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_gstla")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_fur4c")
+}
+
+[node name="Status" parent="." index="3"]
+health = 6
+max_health = 6
+
 [node name="Hitter" parent="Graphics" index="0"]
 collision_mask = 18
 monitorable = false
@@ -399,41 +412,28 @@ rotation = 1.56823
 shape = SubResource("SeparationRayShape2D_gstla")
 disabled = true
 
-[node name="Sprite2D" parent="Graphics" index="1"]
-position = Vector2(0, -5)
-texture = ExtResource("7_v5wyi")
-hframes = 8
-frame = 1
-
-[node name="Wall" parent="Graphics" index="2"]
+[node name="Wall" parent="Graphics" index="1"]
 position = Vector2(0, 5)
 target_position = Vector2(-13, 0)
 
-[node name="PlayerChecker" parent="Graphics" index="3"]
+[node name="PlayerChecker" parent="Graphics" index="2"]
 position = Vector2(0, 5)
 target_position = Vector2(-21, 0)
 
-[node name="Floor" parent="Graphics" index="4"]
+[node name="Floor" parent="Graphics" index="3"]
 position = Vector2(-13, 11)
 
-[node name="Hurter" parent="Graphics" index="5"]
+[node name="Hurter" parent="Graphics" index="4"]
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0"]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_v5wyi")
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 5)
-shape = SubResource("CircleShape2D_gstla")
-
-[node name="AnimationPlayer" parent="." index="2"]
-libraries = {
-&"": SubResource("AnimationLibrary_fur4c")
-}
-
-[node name="Status" parent="." index="4"]
-health = 6
-max_health = 6
+[node name="Sprite2D" parent="Graphics" index="5"]
+position = Vector2(0, -5)
+texture = ExtResource("7_v5wyi")
+hframes = 8
+frame = 1
 
 [connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

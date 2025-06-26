@@ -79,7 +79,7 @@ func change_state(from:State,to:State):
 			animation_player.play("dying")
 			GameProcesser.shake_camera(1.0)
 			var pl=get_tree().get_first_node_in_group("player") as Player
-			pl.status.energy+=10
+			pl.status.energy=80
 
 
 

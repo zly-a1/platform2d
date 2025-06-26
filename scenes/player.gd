@@ -239,7 +239,7 @@ func change_state(from:State,to:State)->void:
 			SoundManager.play_sfx("Hurt")
 			hurttip.show()
 			var tween=create_tween()
-			tween.tween_property(hurttip,"scale",Vector2(0.0,1.0),4.0)
+			tween.tween_property(hurttip,"scale",Vector2(0.0,1.0),super_time.wait_time)
 			tween.finished.connect(func():
 				hurttip.hide()
 				hurttip.scale=Vector2(1.0,1.0)

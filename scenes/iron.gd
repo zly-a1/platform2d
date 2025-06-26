@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		GameProcesser.message_send("无敌时间将缩短！")
-		player.super_time.wait_time=1.0
+		player.super_time.wait_time=2.0
 	pass # Replace with function body.
 
 

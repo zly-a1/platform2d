@@ -4,7 +4,8 @@ enum State{
 	IDLE,
 	WALK,
 	HURT,
-	DYING
+	DYING,
+	ATTACK
 }
 @onready var wall: RayCast2D = $Graphics/Wall
 @onready var floorchker: RayCast2D = $Graphics/Floor
@@ -13,6 +14,7 @@ enum State{
 var is_hurt:bool=false
 var can_hurt:bool=true
 var back_direction:int=0
+var bullet=preload("res://scenes/slime_bullet.tscn")
 
 func _ready() -> void:
 	add_to_group("enemies")
@@ -31,6 +33,8 @@ func tick_physics(state:State,delta:float):
 			hurt_back(back_direction*max_speed,delta)
 		State.DYING:
 			move(0.0,delta)
+		State.ATTACK:
+			move(0.0,delta)
 
 func get_next_state(state:State)->State:
 	
@@ -46,11 +50,17 @@ func get_next_state(state:State)->State:
 			if not animation_player.is_playing():
 				is_hurt=false
 				can_hurt=true
-				return State.WALK
+				return State.ATTACK
 		State.DYING:
 			if not animation_player.is_playing():
 				remove_from_group("enemies")
 				queue_free()
+		State.ATTACK:
+			if state_machine.state_time>randf_range(1,2):
+				return State.WALK
+			if abs(state_machine.state_time-0.5)<0.01 or abs(state_machine.state_time-1)<0.01:
+				shoot()
+				
 	if status.health<=0:
 		return State.DYING
 	if is_hurt:
@@ -80,6 +90,8 @@ func change_state(from:State,to:State):
 			GameProcesser.shake_camera(1.0)
 			var pl=get_tree().get_first_node_in_group("player") as Player
 			pl.status.energy=80
+		State.ATTACK:
+			animation_player.play("walk")
 
 
 
@@ -96,3 +108,10 @@ func _on_hurter_hurt(hitter):
 	if hitter.owner is Bullet:
 		var bullet=hitter.owner as Bullet
 		bullet.Fade()
+
+func shoot():
+	var b:=bullet.instantiate()	as Slime_Bullet
+	b.position=position
+	b.velocity.x=direction*b.SPEED
+	get_parent().get_parent().add_child(b)
+	SoundManager.play_sfx("Slash")

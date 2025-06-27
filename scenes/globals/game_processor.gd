@@ -31,7 +31,7 @@ func _ready():
 	load_config()
 	#get_window().min_size=Vector2i(1024,648)
 
-func change_scene(path:String):
+func change_scene(path:String,fun_to_exec:Callable=func():):
 	if tween_started:
 		return
 	tween_started=true
@@ -47,12 +47,13 @@ func change_scene(path:String):
 	tween=create_tween()
 	tween.tween_property(color_rect,"color:a",0,0.5)
 	await tween.finished
+	fun_to_exec.call()
 	tween_started=false
 	color_rect.hide()
 
 func save_config():
 	var file=ConfigFile.new()
-	
+	file.load(CONFIG_PATH)
 	file.set_value("Audio","master",SoundManager.get_volume(SoundManager.Bus.MASTER))
 	file.set_value("Audio","sfx",SoundManager.get_volume(SoundManager.Bus.SFX))
 	file.save(CONFIG_PATH)

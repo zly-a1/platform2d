@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c006rsldccc0t" path="res://assets/sfx/impactTin_medium_004.ogg" id="4_ms7c1"]
 [ext_resource type="AudioStream" uid="uid://dsmu88w02kfn" path="res://assets/sfx/walk.mp3" id="4_n1l54"]
 [ext_resource type="AudioStream" uid="uid://dqq3y8e0yrvjf" path="res://assets/sfx/impactGlass_heavy_004.ogg" id="5_mptlq"]
-[ext_resource type="AudioStream" uid="uid://due7fw2x82d6" path="res://assets/sfx/game_over.mp3" id="10_64lrx"]
+[ext_resource type="AudioStream" uid="uid://due7fw2x82d6" path="res://assets/bgm/game_over.mp3" id="10_64lrx"]
 [ext_resource type="AudioStream" uid="uid://327f0y5aalpw" path="res://assets/sfx/fruit.mp3" id="11_nwrmn"]
 
 [node name="SoundManager" type="Node"]
@@ -50,10 +50,12 @@ bus = &"SFX"
 stream = ExtResource("5_mptlq")
 bus = &"SFX"
 
-[node name="GameOver" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("10_64lrx")
-bus = &"SFX"
-
 [node name="GetFruit" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("11_nwrmn")
 bus = &"SFX"
+
+[node name="BGM" type="Node" parent="."]
+
+[node name="GameOver" type="AudioStreamPlayer" parent="BGM"]
+stream = ExtResource("10_64lrx")
+bus = &"BGM"

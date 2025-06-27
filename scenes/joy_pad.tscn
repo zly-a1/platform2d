@@ -61,6 +61,7 @@ offset_top = 24.0
 offset_right = -24.0
 offset_bottom = 24.0
 grow_horizontal = 0
+pivot_offset = Vector2(24, -24)
 
 [node name="TouchScreenButton4" type="TouchScreenButton" parent="Control"]
 position = Vector2(-6, -6)
@@ -80,6 +81,7 @@ offset_top = -56.0
 offset_right = 62.0
 offset_bottom = -56.0
 grow_vertical = 0
+pivot_offset = Vector2(-62, 56)
 
 [node name="TextureRect" type="TouchScreenButton" parent="Control2"]
 position = Vector2(-39, -39)
@@ -104,6 +106,7 @@ offset_right = -56.0
 offset_bottom = -56.0
 grow_horizontal = 0
 grow_vertical = 0
+pivot_offset = Vector2(56, 56)
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="Control4"]
 position = Vector2(-32, 8)

@@ -2,6 +2,7 @@ extends CanvasLayer
 @onready var panel: Control = $Panel
 @onready var start: Button = $Panel/Panel/Start
 @onready var new: Button = $Panel/Panel/New
+@onready var setting_panel: Control = $SettingPanel
 
 func _ready() -> void:
 	get_window().set_input_as_handled()
@@ -14,6 +15,8 @@ func _ready() -> void:
 				child.grab_focus()
 			)
 	SoundManager.setup_ui_sounds(self)
+	setting_panel.load_settings()
+	setting_panel.apply_settings()
 	new.grab_focus()
 	
 func hide_title():
@@ -42,8 +45,11 @@ func _on_new_pressed() -> void:
 		GameProcesser.change_scene("res://scenes/tutorial.tscn")
 
 
-func _on_description_pressed() -> void:
-	pass
+
 
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_settings_pressed() -> void:
+	$SettingPanel.open_panel()

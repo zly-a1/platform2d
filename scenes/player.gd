@@ -320,6 +320,12 @@ func flash_stop():
 	velocity.x=0
 
 func _ready() -> void:
+	var config=ConfigFile.new()
+	config.load(GameProcesser.CONFIG_PATH)
+	var pad_scale=config.get_value("Settings","pad_scale",0.5)
+	for child:Control in joy_pad.get_children():
+		child.scale=Vector2(1.0,1.0)*2*pad_scale
+	
 	$Graphics/Hurter/CollisionShape2D.disabled=false
 	for portal:Portal in get_tree().get_nodes_in_group("portals"):
 		portal.enter.connect(func():

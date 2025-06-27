@@ -1,13 +1,24 @@
 extends Node
 @onready var sfx = $SFX
+@onready var bgm: Node = $BGM
 
 enum Bus{
 	MASTER,
-	SFX
+	SFX,
+	BGM
 }
+
+func _process(delta: float) -> void:
+	pass
 
 func play_sfx(name:String)->void:
 	var player:=sfx.get_node(name) as AudioStreamPlayer
+	if not player:
+		return
+	player.play()
+
+func play_bgm(name:String)->void:
+	var player:=bgm.get_node(name) as AudioStreamPlayer
 	if not player:
 		return
 	player.play()

@@ -32,4 +32,6 @@ func show_panel():
 	show()
 	#get_tree().paused=true
 	animation_player.play("show")
-	SoundManager.play_sfx("GameOver")
+	SoundManager.play_bgm("GameOver")
+	await get_tree().create_timer(1.5).timeout
+	(SoundManager.get_node("BGM/GameOver") as AudioStreamPlayer).stop()

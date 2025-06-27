@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj0b7cwm84d7y"]
+[gd_scene load_steps=12 format=3 uid="uid://dj0b7cwm84d7y"]
 
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://batb7erkde71v" path="res://scenes/title_screen.gd" id="1_sa3yf"]
 [ext_resource type="Shader" uid="uid://ls13bb20e1tm" path="res://shaders/blur.tres" id="2_s4lrb"]
+[ext_resource type="PackedScene" uid="uid://cfuluqhqbxr1l" path="res://scenes/setting_panel.tscn" id="4_dc4i4"]
 [ext_resource type="Texture2D" uid="uid://ddq7ef2mbdqyv" path="res://assets/Main Characters/Virtual Guy/Idle (32x32).png" id="4_mgrm8"]
+[ext_resource type="PackedScene" uid="uid://cc0nc4xa5f6sw" path="res://scenes/joy_pad_editable.tscn" id="6_e54dn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sa3yf"]
 shader = ExtResource("2_s4lrb")
@@ -77,10 +79,16 @@ layout_mode = 2
 theme = ExtResource("1_fgkus")
 text = "退出"
 
-[node name="description" type="Button" parent="Panel/Panel"]
+[node name="Settings" type="Button" parent="Panel/Panel"]
 layout_mode = 2
 theme = ExtResource("1_fgkus")
-text = "说明"
+text = "设置"
+
+[node name="SettingPanel" parent="." instance=ExtResource("4_dc4i4")]
+visible = false
+
+[node name="JoyPadEditable" parent="." instance=ExtResource("6_e54dn")]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.421402)
@@ -93,4 +101,4 @@ texture = SubResource("AtlasTexture_dc4i4")
 [connection signal="pressed" from="Panel/Panel/New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="Panel/Panel/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Panel/Panel/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Panel/Panel/description" to="." method="_on_description_pressed"]
+[connection signal="pressed" from="Panel/Panel/Settings" to="." method="_on_settings_pressed"]

@@ -12,6 +12,12 @@ class_name World
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	tree_exiting.connect(func():
+		for child:AudioStreamPlayer in SoundManager.get_node("SFX").get_children():
+			child.stop()
+		for child:AudioStreamPlayer in SoundManager.get_node("BGM").get_children():
+			child.stop()
+		)
 	GameProcesser.fix_camera.connect(func():
 		camera_2d.reset_smoothing()
 		camera_2d.force_update_scroll()
@@ -81,3 +87,6 @@ func setup_scene(data:Dictionary):
 	player.global_position=data["player_position"]
 	player.direction=data["player_direction"]
 	player.state_machine.current_state=data["player_state"]
+
+
+	

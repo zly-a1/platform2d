@@ -93,6 +93,15 @@ text = "音效"
 layout_mode = 2
 bus = &"SFX"
 
+[node name="Volume3" type="Label" parent="V/Audio/G"]
+layout_mode = 2
+theme = ExtResource("3_48igd")
+text = "背景音乐"
+
+[node name="Slider3" parent="V/Audio/G" instance=ExtResource("3_dh7wr")]
+layout_mode = 2
+bus = &"BGM"
+
 [node name="Actions" type="PanelContainer" parent="V"]
 layout_mode = 2
 size_flags_vertical = 2

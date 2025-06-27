@@ -58,8 +58,6 @@ func get_next_state(state:State)->State:
 		State.ATTACK:
 			if state_machine.state_time>randf_range(1,2):
 				return State.WALK
-			if abs(state_machine.state_time-0.5)<0.01 or abs(state_machine.state_time-1)<0.01:
-				shoot()
 				
 	if status.health<=0:
 		return State.DYING
@@ -92,8 +90,8 @@ func change_state(from:State,to:State):
 			pl.status.energy=80
 		State.ATTACK:
 			animation_player.play("walk")
-
-
+			direction=1 if (get_tree().get_first_node_in_group("player") as Player).position.x>=position.x else -1
+			shoot()
 
 func _on_hurter_hurt(hitter):
 	if can_hurt:
@@ -113,5 +111,6 @@ func shoot():
 	var b:=bullet.instantiate()	as Slime_Bullet
 	b.position=position
 	b.velocity.x=direction*b.SPEED
+	b.direction=-direction
 	get_parent().get_parent().add_child(b)
 	SoundManager.play_sfx("Slash")

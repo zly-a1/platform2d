@@ -12,6 +12,7 @@ func open_panel():
 	var config=ConfigFile.new()
 	config.load(GameProcesser.CONFIG_PATH)
 	pad_scale=config.get_value("Settings","pad_scale",0.5)
+	$VBoxContainer/HBoxContainer/HSlider.value=pad_scale
 	for child:Control in $JoyPad.get_children():
 		child.scale=Vector2(1.0,1.0)*2*pad_scale
 	show()

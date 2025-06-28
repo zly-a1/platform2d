@@ -10,6 +10,7 @@ enum State{
 @onready var wall: RayCast2D = $Graphics/Wall
 @onready var floorchker: RayCast2D = $Graphics/Floor
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var player_checker: RayCast2D = $Graphics/PlayerChecker
 
 var is_hurt:bool=false
 var can_hurt:bool=true
@@ -45,6 +46,8 @@ func get_next_state(state:State)->State:
 		State.WALK:
 			if wall.is_colliding() or not floorchker.is_colliding():
 				return State.IDLE
+			if player_checker.is_colliding() and randi_range(0,1)==1:
+				return State.ATTACK
 		State.HURT:
 			
 			if not animation_player.is_playing():
@@ -56,7 +59,7 @@ func get_next_state(state:State)->State:
 				remove_from_group("enemies")
 				queue_free()
 		State.ATTACK:
-			if state_machine.state_time>randf_range(1,2):
+			if state_machine.state_time>randf_range(1,2) and not player_checker.is_colliding():
 				return State.WALK
 				
 	if status.health<=0:
@@ -92,6 +95,7 @@ func change_state(from:State,to:State):
 			animation_player.play("walk")
 			direction=1 if (get_tree().get_first_node_in_group("player") as Player).position.x>=position.x else -1
 			shoot()
+			player_checker.force_raycast_update()
 
 func _on_hurter_hurt(hitter):
 	if can_hurt:

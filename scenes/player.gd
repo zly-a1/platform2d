@@ -278,6 +278,8 @@ func _input(event:InputEvent)->void:
 func _on_hurter_hurt(hitter):
 	if not super_time.is_stopped():
 		return
+	if (hitter as Hitter)==self.hitter:
+		return
 	if status.health>0:
 		status.health-=1
 		damage=true

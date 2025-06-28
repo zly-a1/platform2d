@@ -55,7 +55,7 @@ text = "鬼畜音效"
 
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../Exit")
+focus_neighbor_bottom = NodePath("../Button")
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -63,12 +63,14 @@ text = "手机操作设置"
 
 [node name="Button" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CheckButton")
+focus_neighbor_bottom = NodePath("../../Exit")
 text = "进入"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_top = NodePath("../GridContainer/CheckButton")
+focus_neighbor_top = NodePath("../GridContainer/Button")
 text = "关闭"
 
 [connection signal="pressed" from="VBoxContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]

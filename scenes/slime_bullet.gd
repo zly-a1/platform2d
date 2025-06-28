@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	sprite_2d.scale.x=direction *0.5
-	if is_on_wall() or is_zero_approx(velocity.length()):
+	if is_zero_approx(velocity.length()):
 		Fade()
 	move_and_slide()
 

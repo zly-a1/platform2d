@@ -151,6 +151,9 @@ position = Vector2(1507, -336)
 [node name="Slime36" parent="Enemies" instance=ExtResource("3_ajmxu")]
 position = Vector2(1236, 127)
 
+[node name="PlayerChecker" parent="Enemies/Slime36/Graphics" index="2"]
+target_position = Vector2(-600, 0)
+
 [node name="Slime37" parent="Enemies" instance=ExtResource("3_ajmxu")]
 position = Vector2(2161, -65)
 direction = -1
@@ -274,9 +277,9 @@ position = Vector2(2336, 288)
 position = Vector2(1428, 150)
 
 [node name="Platform2" parent="Platforms" instance=ExtResource("6_akgbu")]
-position = Vector2(2085, 311)
+position = Vector2(2084, 200)
 v = Vector2(0, 40)
-limit = Rect2(2046, -62, 73, 256)
+limit = Rect2(2046, -62, 73, 390)
 type = 1
 
 [node name="Background" type="TextureRect" parent="."]
@@ -333,3 +336,5 @@ shape = SubResource("RectangleShape2D_ajmxu")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]
+
+[editable path="Enemies/Slime36"]

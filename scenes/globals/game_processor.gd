@@ -37,6 +37,7 @@ func change_scene(path:String,fun_to_exec:Callable=func():):
 		return
 	tween_started=true
 	message_list.clear()
+	set_process(false)
 	var tree=get_tree()
 	tree.paused=true
 	color_rect.show()

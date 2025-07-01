@@ -9,8 +9,10 @@ signal exit()
 
 func toogle():
 	animation_player.play("toogle")
+	SoundManager.play_sfx("Focus")
 func untoogle():
 	animation_player.play("untoogle")
+	SoundManager.play_sfx("Focus")
 
 func _ready() -> void:
 	pass

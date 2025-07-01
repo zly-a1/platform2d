@@ -25,8 +25,8 @@ func _ready():
 	var tilesize=map.tile_set.tile_size.x
 	var mappos=map.get_used_rect().position*tilesize
 	var mapsize=map.get_used_rect().size*tilesize
-	background.size=mapsize+Vector2i(400,400)
-	background.position=mappos-Vector2i(200,200)
+	background.size=mapsize+Vector2i(800,800)
+	background.position=mappos-Vector2i(400,400)
 	camera_2d.limit_left=mappos.x
 	camera_2d.limit_top=mappos.y-400
 	camera_2d.limit_right=mappos.x+mapsize.x

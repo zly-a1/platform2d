@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://vc5mmewumo8j"]
+[gd_scene load_steps=14 format=3 uid="uid://vc5mmewumo8j"]
 
 [ext_resource type="Script" uid="uid://b46cwywirf3sn" path="res://scenes/skyland.gd" id="1_8gkas"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_ljaw2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cuxn2ncimf10h" path="res://scenes/boar.tscn" id="6_dvqhr"]
 [ext_resource type="PackedScene" uid="uid://bwntdiifnevcj" path="res://scenes/fruit.tscn" id="7_8gkas"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="7_bjjy1"]
+[ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="7_moupi"]
 [ext_resource type="PackedScene" uid="uid://2a5hobg7j8ek" path="res://scenes/platform.tscn" id="9_20sg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20sg0"]
@@ -148,6 +149,26 @@ position = Vector2(3550, -336)
 
 [node name="Boar19" parent="Enemies" instance=ExtResource("6_dvqhr")]
 position = Vector2(2789, -831)
+
+[node name="Tips" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Tips"]
+offset_left = 2531.0
+offset_top = -867.0
+offset_right = 2611.0
+offset_bottom = -832.0
+theme = ExtResource("7_moupi")
+text = "耐心等待
+移动平台会来接你"
+
+[node name="Label2" type="Label" parent="Tips"]
+offset_left = 3063.0
+offset_top = -498.0
+offset_right = 3143.0
+offset_bottom = -463.0
+theme = ExtResource("7_moupi")
+text = "耐心等待
+移动平台会来接你"
 
 [node name="SavePoints" type="Node" parent="."]
 

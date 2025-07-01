@@ -27,7 +27,6 @@ SoundManager="*res://scenes/globals/sound_manager.tscn"
 
 window/size/viewport_width=384
 window/size/viewport_height=216
-window/size/always_on_top=true
 window/size/extend_to_title=true
 window/size/window_width_override=1152
 window/size/window_height_override=648
@@ -35,6 +34,7 @@ window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
+window/size/always_on_top.editor=true
 
 [filesystem]
 
@@ -48,6 +48,7 @@ platforms=""
 fruits=""
 portals=""
 save_points=""
+switches=""
 
 [input]
 
@@ -98,6 +99,7 @@ pointing/emulate_touch_from_mouse.editor=true
 2d_physics/layer_6="portal"
 2d_physics/layer_7="fruit"
 2d_physics/layer_8="checkpoint"
+2d_physics/layer_9="switch"
 
 [rendering]
 

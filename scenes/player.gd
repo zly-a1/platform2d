@@ -343,6 +343,13 @@ func _ready() -> void:
 		save_point.exit.connect(func():
 			animation_player_2.play("RESET")
 			)
+	for switch:Switch in get_tree().get_nodes_in_group("switches"):
+		switch.enter.connect(func():
+			animation_player_2.play("show")
+			)
+		switch.exit.connect(func():
+			animation_player_2.play("RESET")
+			)
 
 func _on_super_time_timeout() -> void:
 	graphics.modulate.a=1

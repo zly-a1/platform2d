@@ -194,6 +194,8 @@ v = Vector2(0, -40)
 limit = Rect2(2507, -998, 54, 292)
 type = 1
 
+[node name="Switches" type="Node" parent="."]
+
 [node name="player" parent="." instance=ExtResource("3_dvqhr")]
 position = Vector2(53.2312, 138.398)
 

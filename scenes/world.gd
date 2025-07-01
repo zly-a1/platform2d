@@ -57,6 +57,11 @@ func packdata() -> Dictionary:
 		fruit_data[fruit.get_path()]={
 			"type":fruit.type
 		}
+	var switch_data:={}
+	for switch:Switch in get_tree().get_nodes_in_group("switches"):
+		switch_data[switch.get_path()]={
+			"toogled":switch.toogled
+		}
 		
 	return {
 		"player_position":player.global_position,
@@ -64,7 +69,8 @@ func packdata() -> Dictionary:
 		"player_state":player.state_machine.current_state,
 		"enemies":enemies_data,
 		"platforms":platform_data,
-		"fruits":fruit_data
+		"fruits":fruit_data,
+		"switches":switch_data
 	}
 
 func setup_scene(data:Dictionary):
@@ -84,6 +90,12 @@ func setup_scene(data:Dictionary):
 			fruit.queue_free()
 			continue
 		fruit.type=data["fruits"][fruit.get_path()]["type"]
+	for switch:Switch in get_tree().get_nodes_in_group("switches"):
+		if switch.get_path() not in data["switches"]:
+			switch.queue_free()
+			continue
+		switch.toogled=data["switches"][switch.get_path()]["toogled"]
+		switch.toogle() if switch.toogled else switch.untoogle()
 	player.global_position=data["player_position"]
 	player.direction=data["player_direction"]
 	player.state_machine.current_state=data["player_state"]

@@ -7,6 +7,7 @@ signal fix_camera
 
 var tween_started:bool=false
 var message_started:bool=false
+var message_list:Array[String]=[]
 
 var scene_data:Dictionary={}
 var player_status:Dictionary={
@@ -35,6 +36,7 @@ func change_scene(path:String,fun_to_exec:Callable=func():):
 	if tween_started:
 		return
 	tween_started=true
+	message_list.clear()
 	var tree=get_tree()
 	tree.paused=true
 	color_rect.show()
@@ -88,7 +90,27 @@ func resume_game():
 
 
 func _process(delta):
-	pass
+	if not message_list.is_empty() and not tween_started:
+		if message_started:
+			return
+		message_started=true
+		var str=message_list[0]
+		var tip=Label.new()
+		var pl:Player=get_tree().get_first_node_in_group("player")
+		tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
+		get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
+		tip.text=str
+		tip.visible_characters=0
+		tip.theme=preload("res://themes/theme.tres") as Theme
+		var tween=create_tween()
+		tween.tween_property(tip,"visible_characters",str.length(),0.2)
+		await get_tree().create_timer(1.0).timeout
+		tween=create_tween()
+		tween.tween_property(tip,"modulate",Color(1.0,1.0,1.0,0.0),0.2)
+		await tween.finished
+		tip.queue_free()
+		message_list.pop_at(0)
+		message_started=false
 
 
 func resume(node:Node):
@@ -256,21 +278,5 @@ func load_data():
 		current_scene="grass"
 
 func message_send(str: String):
-	if message_started:
-		return
-	message_started=true
-	var tip=Label.new()
-	var pl:Player=get_tree().get_first_node_in_group("player")
-	tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
-	get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
-	tip.text=str
-	tip.visible_characters=0
-	tip.theme=preload("res://themes/theme.tres") as Theme
-	var tween=create_tween()
-	tween.tween_property(tip,"visible_characters",str.length(),0.2)
-	await get_tree().create_timer(1.0).timeout
-	tween=create_tween()
-	tween.tween_property(tip,"modulate",Color(1.0,1.0,1.0,0.0),0.2)
-	await tween.finished
-	tip.queue_free()
-	message_started=false
+	message_list.append(str)
+	

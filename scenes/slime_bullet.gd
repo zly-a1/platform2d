@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	sprite_2d.scale.x=direction *0.5
-	if is_zero_approx(velocity.length()):
+	if is_on_wall() or is_on_ceiling() or is_on_floor():
 		Fade()
 	move_and_slide()
 
@@ -27,7 +27,6 @@ func Fade():
 	velocity.x=0
 	velocity.y=0
 	animation_player.play("hit")
-	await not animation_player.is_playing()
 
 
 

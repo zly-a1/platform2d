@@ -17,6 +17,13 @@ func _ready() -> void:
 		save_point.exit.connect(func():
 			$Control4/TouchScreenButton7.hide()
 			)
+	for switch:Switch in get_tree().get_nodes_in_group("switches"):
+		switch.enter.connect(func():
+			$Control4/TouchScreenButton7.show()
+			)
+		switch.exit.connect(func():
+			$Control4/TouchScreenButton7.hide()
+			)
 	for child:TouchScreenButton in $Control4.get_children():
 		child.pressed.connect(func():
 			child.modulate.a=0.5

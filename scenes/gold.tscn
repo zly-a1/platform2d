@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqwjco0csm20h"]
+
+[ext_resource type="Script" uid="uid://cksvt27ed8tp6" path="res://scenes/gold.gd" id="1_kxhfr"]
+[ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_hqwsd"]
+[ext_resource type="Texture2D" uid="uid://cabydydjlbxrd" path="res://assets/Background/Yellow.png" id="4_kxhfr"]
+[ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="5_4jmfr"]
+[ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="9_ejgt8"]
+[ext_resource type="PackedScene" uid="uid://csemktnsxtjp" path="res://scenes/player.tscn" id="10_7ukqi"]
+[ext_resource type="Script" uid="uid://bjm75opqrpty" path="res://scenes/PlayerCamera.gd" id="11_n00g3"]
+
+[node name="iron" type="Node2D"]
+script = ExtResource("1_kxhfr")
+metadata/_edit_vertical_guides_ = [2342.0]
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="Portal" parent="Portals" instance=ExtResource("2_hqwsd")]
+position = Vector2(222, 159)
+target_world = "res://scenes/iron.tscn"
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Fruits" type="Node" parent="."]
+
+[node name="SavePoints" type="Node" parent="."]
+
+[node name="SavePoint" parent="SavePoints" instance=ExtResource("5_4jmfr")]
+position = Vector2(124, 177)
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Switches" type="Node" parent="."]
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -1
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 144.0
+offset_bottom = 144.0
+texture = ExtResource("4_kxhfr")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="map" type="TileMap" parent="."]
+tile_set = ExtResource("9_ejgt8")
+format = 2
+layer_0/name = "map"
+layer_0/tile_data = PackedInt32Array(720900, 1179648, 8, 720902, 1179648, 8, 720901, 1179648, 8, 720904, 1179648, 8, 720903, 1179648, 8, 720905, 1179648, 8, 720906, 1179648, 8, 720907, 1179648, 8, 720908, 1179648, 8, 720909, 1179648, 8, 720910, 1179648, 8, 720911, 1179648, 8, 720912, 1179648, 8, 720913, 1179648, 8, 720914, 1179648, 8, 720915, 1179648, 8, 720916, 1179648, 8, 720917, 1179648, 8, 720918, 1179648, 8, 720919, 1179648, 8, 720920, 1179648, 8, 720921, 1245184, 8, 655386, 1310720, 10, 589850, 1310720, 9, 524314, 1310720, 9, 458778, 1310720, 9, 393242, 1310720, 9, 327706, 1310720, 9, 262170, 1310720, 9, 196634, 1310720, 9, 131098, 1310720, 8, 65561, 1245184, 8, 65560, 1179648, 8, 65559, 1179648, 8, 65558, 1179648, 8, 65557, 1179648, 8, 65556, 1179648, 8, 65555, 1179648, 8, 65554, 1179648, 8, 65553, 1179648, 8, 65552, 1179648, 8, 65551, 1179648, 8, 65550, 1179648, 8, 65549, 1179648, 8, 65548, 1179648, 8, 65547, 1179648, 8, 65546, 1179648, 8, 65545, 1179648, 8, 65544, 1179648, 8, 65543, 1179648, 8, 65542, 1179648, 8, 65541, 1179648, 8, 65540, 1179648, 8, 65539, 1179648, 8, 65538, 1114112, 8, 131073, 1310720, 8, 196609, 1310720, 9, 262145, 1310720, 9, 1048570, 1179648, 9, 1114106, 1179648, 10, 1048571, 1245184, 9, 1114107, 1245184, 10, 1179650, 1179648, 9, 1245186, 1179648, 10, 1179651, 1245184, 9, 1245187, 1245184, 10, 1638394, 1179648, 9, 1703930, 1179648, 10, 1638395, 1245184, 9, 1703931, 1245184, 10, 1835010, 1179648, 9, 1900546, 1179648, 10, 1835011, 1245184, 9, 1900547, 1245184, 10)
+
+[node name="player" parent="." instance=ExtResource("10_7ukqi")]
+position = Vector2(168.029, 130.577)
+metadata/_edit_lock_ = true
+
+[node name="PlayerCamera" type="Camera2D" parent="player"]
+zoom = Vector2(0.8, 0.8)
+limit_left = 80
+limit_top = 80
+limit_right = 1008
+limit_bottom = 592
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.5
+drag_top_margin = 0.5
+drag_right_margin = 0.5
+drag_bottom_margin = 0.5
+editor_draw_drag_margin = true
+script = ExtResource("11_n00g3")

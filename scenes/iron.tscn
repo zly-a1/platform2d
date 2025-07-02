@@ -30,7 +30,7 @@ target_world = "res://scenes/skyland.tscn"
 
 [node name="Portal2" parent="Portals" instance=ExtResource("2_0jca8")]
 position = Vector2(2657, 142)
-target_world = "res://scenes/skyland.tscn"
+target_world = "res://scenes/gold.tscn"
 
 [node name="Enemies" type="Node" parent="."]
 

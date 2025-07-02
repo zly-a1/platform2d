@@ -8,6 +8,7 @@ signal exit()
 
 var entering:bool=false
 var saved:bool=false
+var delaying:bool=false
 
 func _process(delta: float) -> void:
 	if not saved:
@@ -17,10 +18,15 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("enter") and entering:
+		if delaying:
+			return
+		delaying=true
 		GameProcesser.save_game()
 		saved=true
 		SoundManager.play_sfx("Focus")
 		GameProcesser.message_send("已存档")
+		await get_tree().create_timer(1.0).timeout
+		delaying=false
 
 
 

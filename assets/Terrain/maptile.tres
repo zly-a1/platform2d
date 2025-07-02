@@ -1,10 +1,13 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://b8n62pqdhsqkn"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://b8n62pqdhsqkn"]
 
 [ext_resource type="Texture2D" uid="uid://dmhlwlidarvd2" path="res://assets/Terrain/Terrain (16x16).png" id="1_613ta"]
 [ext_resource type="Texture2D" uid="uid://ccpyh21gwb7pk" path="res://assets/Traps/Spikes/Idle.png" id="2_h3xn7"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_613ta"]
 tile_data = PackedInt32Array(65536, 1, 1073741824, 1, 1, 268435456, 65537, 393216, 6, 131073, 1, 805306368, 65538, 1, 1342177280)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_h3xn7"]
+tile_data = PackedInt32Array(0, 1179648, 9, 65536, 1179648, 10, 1, 1245184, 9, 65537, 1245184, 10)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2jnh"]
 texture = ExtResource("1_613ta")
@@ -314,9 +317,26 @@ texture = ExtResource("1_613ta")
 14:8/0 = 0
 15:8/0 = 0
 17:8/0 = 0
+17:8/0/terrain_set = 1
+17:8/0/terrain = 0
+17:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:8/0/terrains_peering_bit/right_side = 0
 18:8/0 = 0
+18:8/0/terrain_set = 1
+18:8/0/terrain = 0
+18:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:8/0/terrains_peering_bit/right_side = 0
+18:8/0/terrains_peering_bit/left_side = 0
 19:8/0 = 0
+19:8/0/terrain_set = 1
+19:8/0/terrain = 0
+19:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:8/0/terrains_peering_bit/left_side = 0
 20:8/0 = 0
+20:8/0/terrain_set = 1
+20:8/0/terrain = 0
+20:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+20:8/0/terrains_peering_bit/bottom_side = 0
 0:9/0 = 0
 1:9/0 = 0
 2:9/0 = 0
@@ -361,9 +381,23 @@ texture = ExtResource("1_613ta")
 14:9/0 = 0
 15:9/0 = 0
 17:9/0 = 0
+17:9/0/terrain_set = 1
+17:9/0/terrain = 0
+17:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:9/next_alternative_id = 2
 18:9/0 = 0
+18:9/0/terrain_set = 1
+18:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:9/next_alternative_id = 2
 19:9/0 = 0
+19:9/0/terrain_set = 1
+19:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 20:9/0 = 0
+20:9/0/terrain_set = 1
+20:9/0/terrain = 0
+20:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+20:9/0/terrains_peering_bit/bottom_side = 0
+20:9/0/terrains_peering_bit/top_side = 0
 0:10/0 = 0
 1:10/0 = 0
 2:10/0 = 0
@@ -386,9 +420,19 @@ texture = ExtResource("1_613ta")
 13:10/0 = 0
 14:10/0 = 0
 15:10/0 = 0
+18:10/next_alternative_id = 2
 18:10/0 = 0
+18:10/0/terrain_set = 1
+18:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:10/next_alternative_id = 2
 19:10/0 = 0
+19:10/0/terrain_set = 1
+19:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 20:10/0 = 0
+20:10/0/terrain_set = 1
+20:10/0/terrain = 0
+20:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+20:10/0/terrains_peering_bit/top_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w70li"]
 texture = ExtResource("2_h3xn7")
@@ -410,7 +454,11 @@ terrain_set_0/terrain_2/name = "skyland"
 terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 terrain_set_0/terrain_3/name = "iron"
 terrain_set_0/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
+terrain_set_1/mode = 0
+terrain_set_1/terrain_0/name = "gold"
+terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_y2jnh")
 sources/1 = SubResource("TileSetAtlasSource_w70li")
 pattern_0 = SubResource("TileMapPattern_613ta")
+pattern_1 = SubResource("TileMapPattern_h3xn7")

@@ -15,13 +15,14 @@ var player_status:Dictionary={
 	"energy":100.0
 }
 
-var current_scene:String="grass"
+var current_scene:String=""
 
 const SceneFile:Dictionary={
 	"grass":"res://scenes/grass.tscn",
 	"purple":"res://scenes/purple.tscn",
 	"skyland":"res://scenes/skyland.tscn",
-	"iron":"res://scenes/iron.tscn"
+	"iron":"res://scenes/iron.tscn",
+	"gold":"res://scenes/gold.tscn"
 }
 
 signal camera_shock(amount:float)
@@ -91,7 +92,7 @@ func resume_game():
 
 
 func _process(delta):
-	if not message_list.is_empty() and not tween_started:
+	if not message_list.is_empty() and not tween_started and current_scene!="":
 		if message_started:
 			return
 		message_started=true

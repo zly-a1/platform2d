@@ -100,6 +100,7 @@ pointing/emulate_touch_from_mouse.editor=true
 2d_physics/layer_7="fruit"
 2d_physics/layer_8="checkpoint"
 2d_physics/layer_9="switch"
+2d_physics/layer_10="puzzle"
 
 [rendering]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dug4bwyt8kk4a"]
 
 [ext_resource type="Script" uid="uid://o5r6gfu2bbwu" path="res://scenes/Bullet.gd" id="1_fdvxp"]
-[ext_resource type="Texture2D" uid="uid://djny8qy78ug7x" path="res://assets/Traps/Saw/Off.png" id="2_51ykb"]
+[ext_resource type="Texture2D" uid="uid://3nfwiiuhhvdc" path="res://assets/Traps/Spiked Ball/Spiked Ball.png" id="2_l5glv"]
 [ext_resource type="Script" uid="uid://bujr4o6vperxe" path="res://classes/Hitter.gd" id="3_tkb1v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xo4i"]
@@ -18,7 +18,7 @@ script = ExtResource("1_fdvxp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_51ykb")
+texture = ExtResource("2_l5glv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3xo4i")

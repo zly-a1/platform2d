@@ -63,7 +63,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hgi7i")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 20.0
 }]
@@ -76,22 +76,23 @@ radius = 19.0
 
 [node name="puzzle_bullet" type="CharacterBody2D"]
 scale = Vector2(0.4, 0.4)
-collision_layer = 16
+collision_layer = 512
 script = ExtResource("1_tc3o5")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3l06g")
-autoplay = "default"
 frame_progress = 0.222617
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_31vod")
 
 [node name="Hitter" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 3
+collision_layer = 512
+collision_mask = 2
 script = ExtResource("2_tc3o5")
 metadata/_custom_type_script = "uid://bujr4o6vperxe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitter"]
 shape = SubResource("CircleShape2D_a1lsi")
+
+[connection signal="body_entered" from="Hitter" to="." method="_on_hitter_body_entered"]

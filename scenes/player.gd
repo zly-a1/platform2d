@@ -302,6 +302,8 @@ func _on_spike_entered(body):
 		var hit_ter:Node2D=body
 		velocity=(-velocity).normalized()*700.0 if not(is_zero_approx(velocity.x) and is_zero_approx(velocity.x)) else (position-hit_ter.position).normalized()*700.0
 
+
+
 func shoot():
 	var ene_sub:=move_toward(status.energy,0.0,10)
 	if ene_sub<=0:

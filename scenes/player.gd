@@ -10,7 +10,7 @@ enum State{
 	HURT,
 	DYING,
 	ATTACK,
-	FLASH
+	FLASH,
 }
 
 signal died()
@@ -61,7 +61,7 @@ const FLASH_SPEED=750
 var gravity =900
 var damage:bool = false
 var energy_delta:float=0
-
+var controlling:bool=true
 
 func tick_physics(state:State,delta:float)->void:
 	if state!=State.DYING:
@@ -70,7 +70,9 @@ func tick_physics(state:State,delta:float)->void:
 		graphics.modulate.b=1
 		if not super_time.is_stopped():
 			graphics.modulate.a=sin(Time.get_ticks_msec()/40)*0.5+0.5
-	
+	if not controlling:
+		move_without_control(gravity,delta)
+		return
 	match state:
 		State.IDLE:
 			
@@ -109,7 +111,6 @@ func tick_physics(state:State,delta:float)->void:
 
 
 func move(vy:float,delta:float):
-	
 	var dire=Input.get_axis("ui_left","ui_right") if state_machine.current_state!=State.FLASH else direction
 	var acceleration: =GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION
 	velocity.y += vy * delta
@@ -121,6 +122,14 @@ func move(vy:float,delta:float):
 	
 	move_and_slide()
 	
+func move_without_control(vy:float,delta:float):
+	var dire=direction
+	var acceleration: =GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION
+	velocity.y += vy * delta
+	velocity.x=move_toward(velocity.x,dire*SPEED,acceleration*delta) if state_machine.current_state!=State.DYING else 0.0
+	
+	
+	move_and_slide()
 		
 
 
@@ -130,12 +139,10 @@ func get_next_state(state:State) ->State:
 		return State.DYING
 	
 	var can_jump:bool=is_on_floor() or (coyote.time_left > 0)
-	var should_jump=can_jump and Input.is_action_just_pressed("jump")
+	var should_jump=can_jump and Input.is_action_just_pressed("jump") and controlling
 	
 	
-	
-	
-	var direction: = Input.get_axis("ui_left","ui_right")
+	var direction:= Input.get_axis("ui_left","ui_right")
 	var is_still= is_zero_approx(direction) and is_zero_approx(velocity.x)
 	match state:
 		State.IDLE:

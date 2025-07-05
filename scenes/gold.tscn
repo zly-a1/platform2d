@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqwjco0csm20h"]
+[gd_scene load_steps=17 format=3 uid="uid://cqwjco0csm20h"]
 
 [ext_resource type="Script" uid="uid://cksvt27ed8tp6" path="res://scenes/gold.gd" id="1_kxhfr"]
 [ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_hqwsd"]
@@ -26,9 +26,6 @@ size = Vector2(166.5, 34.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6o484"]
 size = Vector2(79, 407.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeea0"]
-size = Vector2(29, 58.3417)
 
 [node name="gold" type="Node2D"]
 script = ExtResource("1_kxhfr")
@@ -417,17 +414,8 @@ shape = SubResource("RectangleShape2D_vkgjr")
 position = Vector2(2327, -221)
 shape = SubResource("RectangleShape2D_6o484")
 
-[node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(1864, -495.829)
-shape = SubResource("RectangleShape2D_aeea0")
-
 [connection signal="body_entered" from="DeadLine" to="." method="_on_dead_line_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
 
 [editable path="Puzzles/Trampoline46"]

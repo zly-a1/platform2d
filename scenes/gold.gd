@@ -27,8 +27,9 @@ func _on_area_2d_2_body_entered(body: Node2D) -> void:
 		body.state_machine.set_physics_process(false)
 		await get_tree().create_timer(1).timeout
 		var tween=create_tween()
-		tween.tween_property(body,"position",Vector2(1891,-474),0.2)
+		tween.tween_property(body,"position",Vector2(1891,-470),0.2)
 		await tween.finished
-		body.velocity=Vector2(0,0)
 		body.state_machine.set_physics_process(true)
+		body.controlled=true
+		body.velocity=Vector2(0,0)
 		

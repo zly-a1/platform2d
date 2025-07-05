@@ -61,7 +61,7 @@ const FLASH_SPEED=750
 var gravity =900
 var damage:bool = false
 var energy_delta:float=0
-var controlling:bool=true
+var controlled:bool=true
 
 func tick_physics(state:State,delta:float)->void:
 	if state!=State.DYING:
@@ -108,13 +108,16 @@ func tick_physics(state:State,delta:float)->void:
 
 
 func move(vy:float,delta:float):
-	var dire=Input.get_axis("ui_left","ui_right") if state_machine.current_state!=State.FLASH else direction
-	var acceleration: =GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION
-	velocity.y += vy * delta
-	velocity.x=move_toward(velocity.x,dire*SPEED,acceleration*delta) if state_machine.current_state!=State.DYING else 0.0
+	if controlled:
+		var dire=Input.get_axis("ui_left","ui_right") if state_machine.current_state!=State.FLASH else direction
+		var acceleration: =GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION
+		velocity.y += vy * delta
 	
-	if not is_zero_approx(dire):
-		direction=Direction.LEFT if dire<0 else Direction.RIGHT
+		velocity.x=move_toward(velocity.x,dire*SPEED,acceleration*delta) if state_machine.current_state!=State.DYING else 0.0
+		
+	
+		if not is_zero_approx(dire):
+			direction=Direction.LEFT if dire<0 else Direction.RIGHT
 	
 	
 	move_and_slide()
@@ -122,8 +125,6 @@ func move(vy:float,delta:float):
 
 
 func get_next_state(state:State) ->State:
-	if not controlling:
-		return state
 	if status.health<=0:
 		return State.DYING
 	
@@ -258,9 +259,7 @@ func change_state(from:State,to:State)->void:
 			animation_player.play("flash")
 			SoundManager.play_sfx("Flash")
 	pass
-
-func _process(delta):
-	pass
+			
 
 func _input(event:InputEvent)->void:
 	if event.is_action_pressed("shoot") and status.energy>=10 and state_machine.current_state!=State.WALL_JUMP:

@@ -246,7 +246,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64cc3"]
-size = Vector2(24, 16)
+size = Vector2(24.0002, 19)
 
 [node name="Trampoline" instance=ExtResource("1_nytqh")]
 script = ExtResource("2_5gay0")
@@ -269,7 +269,11 @@ collision_layer = 512
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, 6)
+position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_64cc3")
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
+target_position = Vector2(0, -179)
+collision_mask = 0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

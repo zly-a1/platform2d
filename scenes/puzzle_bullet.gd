@@ -24,4 +24,5 @@ func Fade():
 
 
 func _on_hitter_body_entered(body: Node2D) -> void:
-	Fade()
+	if not body is Player:
+		Fade()

@@ -16,3 +16,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		animation_player.play("jump")
 		SoundManager.play_sfx("Focus")
 		(body as Player).velocity=direction*amount
+
+
+func test(body: Node2D) -> void:
+	if body is Player:
+		#get_tree().paused=true
+		pass

@@ -132,6 +132,7 @@ _data = {
 }
 
 [node name="Shooter" instance=ExtResource("1_1e8ai")]
+collision_mask = 0
 script = ExtResource("2_mger4")
 direction = 2
 

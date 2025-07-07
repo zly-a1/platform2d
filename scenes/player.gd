@@ -112,9 +112,8 @@ func move(vy:float,delta:float):
 		var dire=Input.get_axis("ui_left","ui_right") if state_machine.current_state!=State.FLASH else direction
 		var acceleration: =GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION
 		velocity.y += vy * delta
-	
 		velocity.x=move_toward(velocity.x,dire*SPEED,acceleration*delta) if state_machine.current_state!=State.DYING else 0.0
-		
+		var vx=velocity.x
 	
 		if not is_zero_approx(dire):
 			direction=Direction.LEFT if dire<0 else Direction.RIGHT

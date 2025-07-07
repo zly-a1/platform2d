@@ -3,7 +3,6 @@ extends World
 
 func _ready() -> void:
 	super()
-	camera_2d.limit_right=5000
 	background.size.x+=3000
 
 func _on_dead_line_body_entered(body: Node2D) -> void:

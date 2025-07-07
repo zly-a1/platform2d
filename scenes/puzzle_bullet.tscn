@@ -76,7 +76,7 @@ radius = 19.0
 
 [node name="puzzle_bullet" type="CharacterBody2D"]
 scale = Vector2(0.4, 0.4)
-collision_layer = 512
+collision_layer = 1024
 script = ExtResource("1_tc3o5")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

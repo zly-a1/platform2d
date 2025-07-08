@@ -14,8 +14,8 @@ config/name="platform"
 config/version="1.0.0"
 run/main_scene="uid://dj0b7cwm84d7y"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-boot_splash/fullsize=false
-boot_splash/use_filter=false
+boot_splash/bg_color=Color(0, 0, 0, 0.321569)
+boot_splash/image="uid://crftxia8j2xe0"
 config/icon="uid://blobjdffomm8i"
 
 [autoload]
@@ -27,7 +27,7 @@ SoundManager="*res://scenes/globals/sound_manager.tscn"
 
 window/size/viewport_width=384
 window/size/viewport_height=216
-window/size/always_on_top=true
+window/size/transparent=true
 window/size/extend_to_title=true
 window/size/window_width_override=1152
 window/size/window_height_override=648
@@ -35,6 +35,13 @@ window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
+window/size/always_on_top.editor=true
+
+[editor]
+
+movie_writer/movie_file="C:/Data/platform-show/movie.avi"
+movie_writer/disable_vsync=true
+movie_writer/fps=120
 
 [filesystem]
 
@@ -108,4 +115,3 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.136826, 0.136826, 0.136826, 1)

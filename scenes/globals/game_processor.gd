@@ -22,7 +22,8 @@ const SceneFile:Dictionary={
 	"purple":"res://scenes/purple.tscn",
 	"skyland":"res://scenes/skyland.tscn",
 	"iron":"res://scenes/iron.tscn",
-	"gold":"res://scenes/gold.tscn"
+	"gold":"res://scenes/gold.tscn",
+	"cooper":"res://scenes/cooper.tscn"
 }
 
 signal camera_shock(amount:float)

@@ -50,6 +50,5 @@ func _on_new_pressed() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_settings_pressed() -> void:
 	$SettingPanel.open_panel()

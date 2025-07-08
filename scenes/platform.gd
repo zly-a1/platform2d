@@ -27,5 +27,5 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	pass
 func _on_ground_entered(body: Node2D) -> void:
-	if body is TileMap and type==Type.COLLISION:
+	if type==Type.COLLISION and not body is Player and not body is Enemy:
 		v*=-1

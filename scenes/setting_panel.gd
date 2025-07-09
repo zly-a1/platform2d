@@ -8,6 +8,8 @@ func load_settings():
 	settings.load(SETTING_FILE)
 	is_guichu=settings.get_value("Settings","is_guichu",false)
 	$VBoxContainer/GridContainer/CheckButton.button_pressed=is_guichu
+	#if OS.get_name()!="Android":
+		#$VBoxContainer/GridContainer/Button.disabled=true
 func apply_settings():
 	var settings=ConfigFile.new()
 	settings.load(SETTING_FILE)

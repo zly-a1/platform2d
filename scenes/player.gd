@@ -11,6 +11,7 @@ enum State{
 	DYING,
 	ATTACK,
 	FLASH,
+	DOUBLE_JUMP
 }
 
 signal died()
@@ -62,6 +63,11 @@ var gravity =900
 var damage:bool = false
 var energy_delta:float=0
 var controlled:bool=true
+var flash_enabled:bool=true
+var jump_time:int=2
+var acceleration_scale:float=1.0 #For Android Knob
+var velocity_scale:float=1.0 #For Android Knob
+
 
 func tick_physics(state:State,delta:float)->void:
 	if state!=State.DYING:
@@ -80,6 +86,11 @@ func tick_physics(state:State,delta:float)->void:
 			move(gravity,delta)
 			
 		State.JUMP:
+			
+		
+			move(gravity,delta)
+			
+		State.DOUBLE_JUMP:
 			
 		
 			move(gravity,delta)
@@ -110,9 +121,9 @@ func tick_physics(state:State,delta:float)->void:
 func move(vy:float,delta:float):
 	if controlled:
 		var dire=Input.get_axis("ui_left","ui_right") if state_machine.current_state!=State.FLASH else direction
-		var acceleration: =GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION
+		var acceleration: =(GROUND_ACCELERATIION if is_on_floor() else AIR_ACCELERATION)*acceleration_scale
 		velocity.y += vy * delta
-		velocity.x=move_toward(velocity.x,dire*SPEED,acceleration*delta) if state_machine.current_state!=State.DYING else 0.0
+		velocity.x=move_toward(velocity.x,dire*SPEED*velocity_scale,acceleration*delta) if state_machine.current_state!=State.DYING else 0.0
 		var vx=velocity.x
 	
 		if not is_zero_approx(dire):
@@ -152,7 +163,12 @@ func get_next_state(state:State) ->State:
 			if velocity.y>0:
 				return State.FALL
 				
-			
+		State.DOUBLE_JUMP:
+			if is_on_wall_only() and velocity.y>0:
+				return State.WALL_JUMP
+			if velocity.y>0:
+				return State.FALL
+				
 		State.FALL:
 			if is_on_wall_only():
 				return State.WALL_JUMP
@@ -187,6 +203,8 @@ func get_next_state(state:State) ->State:
 		return State.HURT
 	if should_jump:
 		return State.JUMP
+	if jump_time>0 and (state==State.JUMP or state==State.FALL) and Input.is_action_just_pressed("jump") and status.energy>=40:
+		return State.DOUBLE_JUMP
 	
 	if Input.is_action_just_pressed("attack") and state_machine.current_state!=State.FLASH:
 		return State.ATTACK
@@ -195,7 +213,7 @@ func get_next_state(state:State) ->State:
 	return state
 
 func change_state(from:State,to:State)->void:
-	#print("[%s]:%s->%s"%[Engine.get_physics_frames(),State.keys()[from]if from!=-1 else "START",State.keys()[to]])
+	print("[%s]:%s->%s"%[Engine.get_physics_frames(),State.keys()[from]if from!=-1 else "START",State.keys()[to]])
 	if from in GROUND_STATES and to in GROUND_STATES:
 		coyote.stop()
 	match from:
@@ -208,20 +226,27 @@ func change_state(from:State,to:State)->void:
 	match to:
 		State.IDLE:
 			animation_player.play("idle")
+			jump_time=2
 			
 		State.RUN:
 			animation_player.play("run")
 			
 		State.JUMP:
-			
+			jump_time-=1
 			animation_player.play("jump")
 			SoundManager.play_sfx("Jump")
 			if from==State.WALL_JUMP:
 				direction*=-1
-				velocity.x=direction*550.0
+				velocity.x=direction*550.0*velocity_scale
 			velocity.y = JUMP_VELOCITY
 			coyote.stop()
-			
+		State.DOUBLE_JUMP:
+			jump_time-=1
+			status.energy-=30               
+			animation_player.play("jump")
+			SoundManager.play_sfx("Jump")
+			velocity.y = JUMP_VELOCITY
+		
 		State.FALL:
 			animation_player.play("fall")
 			if from in GROUND_STATES:
@@ -229,6 +254,7 @@ func change_state(from:State,to:State)->void:
 		State.WALL_JUMP:
 			animation_player.play("walljump")
 			direction=-get_wall_normal().x as int
+			jump_time=2
 			
 		State.HURT:
 			animation_player.play("hurt")
@@ -251,7 +277,7 @@ func change_state(from:State,to:State)->void:
 			SoundManager.play_sfx("Attack")
 		State.FLASH:
 			energy_delta=status.energy
-			status.energy-=30
+			status.energy-=40
 			if status.energy<0:
 				status.energy=0
 			energy_delta-=status.energy
@@ -279,7 +305,7 @@ func _on_hurter_hurt(hitter):
 		damage=true
 		super_time.start()
 		var hit_ter:CharacterBody2D=hitter.owner
-		velocity=(-velocity).normalized()*700.0 if not(is_zero_approx(velocity.x) and is_zero_approx(velocity.x)) else (position-hit_ter.position).normalized()*700.0
+		velocity=((-velocity).normalized()*700.0 if not(is_zero_approx(velocity.x) and is_zero_approx(velocity.x)) else (position-hit_ter.position).normalized()*700.0)*velocity_scale
 		
 func die():
 	died.emit()
@@ -294,7 +320,7 @@ func _on_spike_entered(body):
 		damage=true
 		super_time.start()
 		var hit_ter:Node2D=body
-		velocity=(-velocity).normalized()*700.0 if not(is_zero_approx(velocity.x) and is_zero_approx(velocity.x)) else (position-hit_ter.position).normalized()*700.0
+		velocity=((-velocity).normalized()*700.0 if not(is_zero_approx(velocity.x) and is_zero_approx(velocity.x)) else (position-hit_ter.position).normalized()*700.0)*velocity_scale
 
 
 
@@ -323,6 +349,9 @@ func _ready() -> void:
 	var pad_scale=config.get_value("Settings","pad_scale",0.5)
 	for child:Control in joy_pad.get_children():
 		child.scale=Vector2(1.0,1.0)*2*pad_scale
+	var knob_sensitivity=config.get_value("Settings","knob_sensitivity",1.0)
+	acceleration_scale=knob_sensitivity
+	velocity_scale=knob_sensitivity
 	
 	$Graphics/Hurter/CollisionShape2D.disabled=false
 	for portal:Portal in get_tree().get_nodes_in_group("portals"):
@@ -356,3 +385,9 @@ func _on_super_time_timeout() -> void:
 func _on_attack_time_timeout() -> void:
 	$Graphics/Hitter/CollisionShape2D.disabled=true
 	pass # Replace with function body.
+
+func enable_flash():
+	flash_enabled=true
+
+func disable_flash():
+	flash_enabled=false

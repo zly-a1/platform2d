@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i1njt"]
 shader = ExtResource("1_xtyyo")
-shader_parameter/blur_amount = 2.0
+shader_parameter/blur_amount = 4.0
 shader_parameter/color_over = Color(0, 0, 0, 1)
 shader_parameter/mix_amount = 0.5
 shader_parameter/alpha = 1.0

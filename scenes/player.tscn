@@ -909,6 +909,8 @@ one_shot = true
 
 [node name="Status" type="Node" parent="."]
 script = ExtResource("10_p053j")
+health = 20
+max_health = 20
 
 [node name="Prompt" type="Sprite2D" parent="."]
 visible = false

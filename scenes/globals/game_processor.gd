@@ -11,7 +11,7 @@ var message_list:Array[String]=[]
 
 var scene_data:Dictionary={}
 var player_status:Dictionary={
-	"health":10,
+	"health":20,
 	"energy":100.0
 }
 
@@ -35,7 +35,7 @@ func _ready():
 	#get_window().min_size=Vector2i(1024,648)
 
 func change_scene(path:String,fun_to_exec:Callable=func():):
-	if tween_started:
+	if tween_started or message_started:
 		return
 	tween_started=true
 	message_list.clear()
@@ -99,9 +99,16 @@ func _process(delta):
 		message_started=true
 		var str=message_list[0]
 		var tip=Label.new()
-		var pl:Player=get_tree().get_first_node_in_group("player")
-		tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
-		get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
+		tip.z_index=100
+		if get_tree().current_scene is World:
+			var pl:Player=get_tree().get_first_node_in_group("player")
+			tip.position=Vector2(pl.get_viewport_rect().position.x+10,pl.get_viewport_rect().end.y-20)
+			get_tree().get_first_node_in_group("player").get_node("foreUI/message").add_child(tip)
+		else:
+			tip.position=Vector2(get_viewport().get_visible_rect().position.x+10,get_viewport().get_visible_rect().size.y-20)
+			print(tip.position)
+			get_node("/root/GameProcesser").add_child(tip)
+		
 		tip.text=str
 		tip.visible_characters=0
 		tip.theme=preload("res://themes/theme.tres") as Theme
@@ -153,9 +160,10 @@ func save_game():
 func load_game(path:String):
 	if not current_scene:
 		return
-	if tween_started:
+	if tween_started or message_started:
 		return
 	tween_started=true
+	message_list.clear()
 	var tree=get_tree()
 	tree.paused=true
 	color_rect.show()
@@ -245,7 +253,7 @@ func new_game():
 	await tree.current_scene!=null
 	scene_data={}
 	player_status={
-		"health":10,
+		"health":20,
 		"energy":100.0
 	}
 	current_scene=tree.current_scene.scene_file_path.get_basename().get_file()

@@ -64,6 +64,7 @@ var gravity =900
 var damage:bool = false
 
 
+
 func tick_physics(state:State,delta:float)->void:
 	graphics.modulate.r=1
 	graphics.modulate.g=1

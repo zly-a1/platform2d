@@ -18,3 +18,12 @@ func _on_not_allow_flash_body_exited(body: Node2D) -> void:
 		body.enable_flash()
 		GameProcesser.message_send("闪现恢复")
 	pass # Replace with function body.
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.controlled=false
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is Player:
+		body.controlled=true

@@ -64,10 +64,9 @@ var damage:bool = false
 var energy_delta:float=0
 var controlled:bool=true
 var flash_enabled:bool=true
-var jump_time:int=2
 var acceleration_scale:float=1.0 #For Android Knob
 var velocity_scale:float=1.0 #For Android Knob
-
+var double_jump_lock:bool=false
 
 func tick_physics(state:State,delta:float)->void:
 	if state!=State.DYING:
@@ -162,6 +161,9 @@ func get_next_state(state:State) ->State:
 				return State.WALL_JUMP
 			if velocity.y>0:
 				return State.FALL
+			if status.energy>=30 and Input.is_action_just_pressed("jump") and not double_jump_lock and velocity.y>JUMP_VELOCITY:
+				double_jump_lock=true
+				return State.DOUBLE_JUMP
 				
 		State.DOUBLE_JUMP:
 			if is_on_wall_only() and velocity.y>0:
@@ -174,6 +176,9 @@ func get_next_state(state:State) ->State:
 				return State.WALL_JUMP
 			if is_on_floor():                                     
 				return State.IDLE if is_still else State.RUN
+			if status.energy>=30 and Input.is_action_just_pressed("jump") and not double_jump_lock and velocity.y>JUMP_VELOCITY:
+				double_jump_lock=true
+				return State.DOUBLE_JUMP
 			
 		State.WALL_JUMP:
 			if Input.is_action_just_pressed("jump"):
@@ -203,12 +208,10 @@ func get_next_state(state:State) ->State:
 		return State.HURT
 	if should_jump:
 		return State.JUMP
-	if jump_time>0 and (state==State.JUMP or state==State.FALL) and Input.is_action_just_pressed("jump") and status.energy>=40:
-		return State.DOUBLE_JUMP
 	
 	if Input.is_action_just_pressed("attack") and state_machine.current_state!=State.FLASH:
 		return State.ATTACK
-	if Input.is_action_just_pressed("flash") and status.energy>=30 and not is_on_wall():
+	if Input.is_action_just_pressed("flash") and status.energy>=30 and not is_on_wall() and flash_enabled:
 		return State.FLASH
 	return state
 
@@ -226,13 +229,11 @@ func change_state(from:State,to:State)->void:
 	match to:
 		State.IDLE:
 			animation_player.play("idle")
-			jump_time=2
-			
+			double_jump_lock=false
 		State.RUN:
 			animation_player.play("run")
 			
 		State.JUMP:
-			jump_time-=1
 			animation_player.play("jump")
 			SoundManager.play_sfx("Jump")
 			if from==State.WALL_JUMP:
@@ -241,7 +242,6 @@ func change_state(from:State,to:State)->void:
 			velocity.y = JUMP_VELOCITY
 			coyote.stop()
 		State.DOUBLE_JUMP:
-			jump_time-=1
 			status.energy-=30               
 			animation_player.play("jump")
 			SoundManager.play_sfx("Jump")
@@ -254,8 +254,7 @@ func change_state(from:State,to:State)->void:
 		State.WALL_JUMP:
 			animation_player.play("walljump")
 			direction=-get_wall_normal().x as int
-			jump_time=2
-			
+			double_jump_lock=false
 		State.HURT:
 			animation_player.play("hurt")
 			SoundManager.play_sfx("Hurt")

@@ -2,14 +2,21 @@ extends Control
 
 const SETTING_FILE="user://config.ini"
 var is_guichu:bool=false
+var introduced:bool=false
+var knob_sensitivity:float=1.0
+var settings=ConfigFile.new()
+
+func _ready() -> void:
+	var config=ConfigFile.new()
+	config.load(GameProcesser.CONFIG_PATH)
 
 func load_settings():
-	var settings=ConfigFile.new()
 	settings.load(SETTING_FILE)
+	introduced=settings.get_value("Run","introduced",false)
+	knob_sensitivity=settings.get_value("Settings","knob_sensitivity",1.0)
 	is_guichu=settings.get_value("Settings","is_guichu",false)
+	$VBoxContainer/GridContainer/HSlider2.value=knob_sensitivity
 	$VBoxContainer/GridContainer/CheckButton.button_pressed=is_guichu
-	#if OS.get_name()!="Android":
-		#$VBoxContainer/GridContainer/Button.disabled=true
 func apply_settings():
 	var settings=ConfigFile.new()
 	settings.load(SETTING_FILE)
@@ -25,15 +32,23 @@ func open_panel():
 	show()
 	$VBoxContainer/Exit.grab_focus()
 	load_settings()
+	
 
 	
 	
 
 
 
+func _on_h_slider_2_value_changed(value: float) -> void:
+	knob_sensitivity=value
+	settings.set_value("Settings","knob_sensitivity",knob_sensitivity)
+	settings.save(SETTING_FILE)
 
 
 
+func _on_h_slider_2_drag_ended(value_changed: bool) -> void:
+	if not introduced:
+		GameProcesser.message_send("此设置在教程关卡不起效")
 
 func _on_exit_pressed() -> void:
 	hide()
@@ -47,4 +62,11 @@ func _on_check_button_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	get_parent().get_node("JoyPadEditable").open_panel()
+	if OS.get_name()=="Android":
+		get_parent().get_node("JoyPadEditable").open_panel()
+	else:
+		get_parent().get_node("KeyBoardSettings").open_panel()
+
+
+func _on_button_2_pressed() -> void:
+	pass # Replace with function body.

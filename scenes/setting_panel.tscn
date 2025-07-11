@@ -59,13 +59,26 @@ focus_neighbor_bottom = NodePath("../Button")
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "手机操作设置"
+text = "键位设置"
 
 [node name="Button" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../CheckButton")
 focus_neighbor_bottom = NodePath("../../Exit")
 text = "进入"
+
+[node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "灵敏度"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 0.7
+max_value = 1.2
+step = 0.0
+value = 1.0
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -75,4 +88,6 @@ text = "关闭"
 
 [connection signal="pressed" from="VBoxContainer/GridContainer/CheckButton" to="." method="_on_check_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="drag_ended" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/GridContainer/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

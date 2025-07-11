@@ -3,6 +3,7 @@ extends Node
 
 const CONFIG_PATH="user://config.ini"
 const DATA_PATH = "user://scenedata.tres"
+const KEYMAP_PATH = "user://keymap.tres"
 signal fix_camera
 
 var tween_started:bool=false
@@ -91,6 +92,13 @@ func resume_game():
 	if node:
 		resume(node)
 
+func load_keymap():
+	var key_map=KeyMapData.new() if not FileAccess.file_exists(KEYMAP_PATH) else ResourceLoader.load(KEYMAP_PATH) as KeyMapData
+	for action in key_map.keymap.keys():
+		var input_event:=InputEventKey.new()
+		input_event.keycode=key_map.keymap[action]
+		InputMap.action_erase_events(action)
+		InputMap.action_add_event(action,input_event)
 
 func _process(delta):
 	if not message_list.is_empty() and not tween_started and current_scene!="":

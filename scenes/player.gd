@@ -348,7 +348,7 @@ func _ready() -> void:
 	var pad_scale=config.get_value("Settings","pad_scale",0.5)
 	for child:Control in joy_pad.get_children():
 		child.scale=Vector2(1.0,1.0)*2*pad_scale
-	var knob_sensitivity=config.get_value("Settings","knob_sensitivity",1.0)
+	var knob_sensitivity=config.get_value("Settings","knob_sensitivity",0.8)
 	acceleration_scale=knob_sensitivity
 	velocity_scale=knob_sensitivity
 	

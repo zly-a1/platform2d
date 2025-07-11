@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj0b7cwm84d7y"]
+[gd_scene load_steps=9 format=3 uid="uid://dj0b7cwm84d7y"]
 
 [ext_resource type="Theme" uid="uid://dq2k6takiambk" path="res://themes/theme.tres" id="1_fgkus"]
 [ext_resource type="Script" uid="uid://batb7erkde71v" path="res://scenes/title_screen.gd" id="1_sa3yf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cfuluqhqbxr1l" path="res://scenes/setting_panel.tscn" id="4_dc4i4"]
 [ext_resource type="VideoStream" uid="uid://b1dm3g3opqjm2" path="res://assets/show/movie.ogv" id="6_3yumr"]
 [ext_resource type="PackedScene" uid="uid://cc0nc4xa5f6sw" path="res://scenes/joy_pad_editable.tscn" id="6_e54dn"]
+[ext_resource type="PackedScene" uid="uid://cx8p6bbp1kx6i" path="res://scenes/key_board_settings.tscn" id="7_3yumr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sa3yf"]
 shader = ExtResource("2_s4lrb")
@@ -86,6 +87,9 @@ text = "设置"
 visible = false
 
 [node name="JoyPadEditable" parent="." instance=ExtResource("6_e54dn")]
+visible = false
+
+[node name="KeyBoardSettings" parent="." instance=ExtResource("7_3yumr")]
 visible = false
 
 [connection signal="pressed" from="Panel/Panel/New" to="." method="_on_new_pressed"]

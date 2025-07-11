@@ -63,7 +63,7 @@ text = "移动-左"
 [node name="MoveLeft" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "左箭头"
+text = "←"
 
 [node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -74,7 +74,7 @@ text = "移动-右"
 [node name="MoveRight" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "右箭头"
+text = "→"
 
 [node name="Label3" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2

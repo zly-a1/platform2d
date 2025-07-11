@@ -1,5 +1,7 @@
 extends Control
 
+var focus_node:Button
+
 var rebinding_action:=""
 var binding_node:Button
 
@@ -69,10 +71,10 @@ const KEY_DISPLAY_NAMES = {
 	KEY_CAPSLOCK: "Caps Lock",
 	KEY_MENU: "菜单",
 	
-	KEY_LEFT: "左箭头",
-	KEY_RIGHT: "右箭头",
-	KEY_UP: "上箭头",
-	KEY_DOWN: "下箭头",
+	KEY_LEFT: "←",
+	KEY_RIGHT: "→",
+	KEY_UP: "↑",
+	KEY_DOWN: "↓",
 	
 	KEY_BRACKETLEFT: "[",
 	KEY_BRACKETRIGHT: "]",
@@ -147,6 +149,8 @@ func open_panel():
 func start_rebinding(node:Button,action:String):
 	rebinding_action=action
 	binding_node=node
+	focus_node=get_viewport().gui_get_focus_owner()
+	get_viewport().gui_release_focus()
 	
 func _unhandled_key_input(event: InputEvent) -> void:
 	if rebinding_action!="" and binding_node!=null and event is InputEventKey and event.is_pressed():
@@ -158,6 +162,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		ResourceSaver.save(keymap,GameProcesser.KEYMAP_PATH)
 		rebinding_action=""
 		binding_node=null
+		focus_node.grab_focus()
 
 
 func _on_move_left_pressed() -> void:

@@ -305,7 +305,7 @@ func _on_hurter_hurt(hitter):
 		super_time.start()
 		var hit_ter:CharacterBody2D=hitter.owner
 		velocity=((-velocity).normalized()*700.0 if not(is_zero_approx(velocity.x) and is_zero_approx(velocity.x)) else (position-hit_ter.position).normalized()*700.0)*velocity_scale
-		
+		$GPUParticles2D.restart()
 func die():
 	died.emit()
 	game_over_panel.show_panel()

@@ -82,7 +82,7 @@ func change_state(from:State,to:State):
 				floorchker.force_raycast_update()
 		State.HURT:
 			animation_player.play("hurt")
-			GameProcesser.shake_camera(1.0)
+			GameProcesser.shake_camera(5.0)
 			Engine.time_scale=0.01
 			await get_tree().create_timer(0.05,true,false,true).timeout
 			Engine.time_scale=1

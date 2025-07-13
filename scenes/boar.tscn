@@ -7,18 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://nduqd5mcjguv" path="res://assets/Main Characters/enemy/Run-Sheet.png" id="3_nynnp"]
 [ext_resource type="Texture2D" uid="uid://du3rq7m1vy66s" path="res://assets/Main Characters/enemy/Hit-Sheet.png" id="6_m4q8f"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q63wp"]
-size = Vector2(21, 25.239)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_31k63"]
-size = Vector2(36.4582, 8.6195)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqe4t"]
-size = Vector2(20.8772, 28)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lo6t"]
-size = Vector2(43, 19)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_608qu"]
 radius = 12.0
 
@@ -443,8 +431,38 @@ _data = {
 &"walk": SubResource("Animation_m5eg6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q63wp"]
+size = Vector2(21, 25.239)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31k63"]
+size = Vector2(36.4582, 8.6195)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqe4t"]
+size = Vector2(20.8772, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lo6t"]
+size = Vector2(43, 19)
+
 [node name="Boar" groups=["enemies"] instance=ExtResource("1_yrl73")]
 script = ExtResource("2_qbaom")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-2, 4)
+shape = SubResource("CircleShape2D_608qu")
+
+[node name="AnimationPlayer" parent="." index="1"]
+reset_on_save = false
+libraries = {
+&"": SubResource("AnimationLibrary_cq8op")
+}
+
+[node name="Status" parent="." index="3"]
+health = 4
+max_health = 4
+
+[node name="CalmdownTimer" type="Timer" parent="." index="4"]
+wait_time = 2.5
+one_shot = true
 
 [node name="Hitter" parent="Graphics" index="0"]
 collision_mask = 18
@@ -458,16 +476,10 @@ shape = SubResource("RectangleShape2D_q63wp")
 position = Vector2(-1.7709, 7.69025)
 shape = SubResource("RectangleShape2D_31k63")
 
-[node name="Sprite2D" parent="Graphics" index="1"]
-texture = ExtResource("1_0hpwt")
-hframes = 4
-region_enabled = true
-region_rect = Rect2(0, 0, 192, 32)
-
-[node name="PlayerChecker" parent="Graphics" index="3"]
+[node name="PlayerChecker" parent="Graphics" index="2"]
 target_position = Vector2(-70, 0)
 
-[node name="Hurter" parent="Graphics" index="5"]
+[node name="Hurter" parent="Graphics" index="4"]
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurter" index="0"]
@@ -478,22 +490,10 @@ shape = SubResource("RectangleShape2D_oqe4t")
 position = Vector2(-3.5, 3.5)
 shape = SubResource("RectangleShape2D_6lo6t")
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-2, 4)
-shape = SubResource("CircleShape2D_608qu")
-
-[node name="AnimationPlayer" parent="." index="2"]
-reset_on_save = false
-libraries = {
-&"": SubResource("AnimationLibrary_cq8op")
-}
-
-[node name="CalmdownTimer" type="Timer" parent="." index="4"]
-wait_time = 2.5
-one_shot = true
-
-[node name="Status" parent="." index="5"]
-health = 4
-max_health = 4
+[node name="Sprite2D" parent="Graphics" index="5"]
+texture = ExtResource("1_0hpwt")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 192, 32)
 
 [connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

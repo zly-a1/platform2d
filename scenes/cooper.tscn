@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://doq2ok5a6mr3"]
+[gd_scene load_steps=16 format=3 uid="uid://doq2ok5a6mr3"]
 
 [ext_resource type="Script" uid="uid://cyfm008was8oj" path="res://scenes/cooper.gd" id="1_kimck"]
+[ext_resource type="PackedScene" uid="uid://boeicyglvlhvj" path="res://scenes/portal.tscn" id="2_6sx7t"]
 [ext_resource type="Texture2D" uid="uid://dhvpr8kbmqofo" path="res://assets/Background/Brown.png" id="2_kimck"]
 [ext_resource type="TileSet" uid="uid://b8n62pqdhsqkn" path="res://assets/Terrain/maptile.tres" id="3_u45cv"]
 [ext_resource type="PackedScene" uid="uid://dskfgefbsxmba" path="res://scenes/save_point.tscn" id="4_20agi"]
@@ -31,6 +32,10 @@ metadata/_edit_horizontal_guides_ = [953.0]
 metadata/_edit_vertical_guides_ = [187.0]
 
 [node name="Portals" type="Node" parent="."]
+
+[node name="Portal" parent="Portals" instance=ExtResource("2_6sx7t")]
+position = Vector2(114, 509)
+target_world = "res://scenes/gold.tscn"
 
 [node name="Enemies" type="Node" parent="."]
 

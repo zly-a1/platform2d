@@ -97,13 +97,13 @@ func change_state(from:State,to:State):
 			animation_player.play("run")
 		State.HURT:
 			animation_player.play("hurt")
-			GameProcesser.shake_camera(1.0)
+			GameProcesser.shake_camera(5.0)
 			Engine.time_scale=0.01
 			await get_tree().create_timer(0.05,true,false,true).timeout
 			Engine.time_scale=1
 		State.DYING:
 			animation_player.play("dying")
-			GameProcesser.shake_camera(1.0)
+			GameProcesser.shake_camera(5.0)
 
 
 func _on_hurter_hurt(hitter):

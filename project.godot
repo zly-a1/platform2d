@@ -37,11 +37,19 @@ window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
 window/size/always_on_top.editor=true
 
+[dotnet]
+
+project/assembly_name="platform"
+
 [editor]
 
 movie_writer/movie_file="C:/Data/platform-show/movie.avi"
 movie_writer/disable_vsync=true
 movie_writer/fps=120
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/behaviour_toolkit/plugin.cfg")
 
 [filesystem]
 

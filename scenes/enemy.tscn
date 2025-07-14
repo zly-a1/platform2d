@@ -69,3 +69,5 @@ value = 50.0
 texture_under = SubResource("AtlasTexture_nenq2")
 texture_progress = SubResource("AtlasTexture_md484")
 texture_progress_offset = Vector2(1, 1)
+
+[connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

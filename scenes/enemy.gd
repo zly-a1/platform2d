@@ -43,3 +43,11 @@ func _process(delta: float) -> void:
 	$Graphics/HealthBar.max_value=status.max_health
 	$Graphics/HealthBar.scale=Vector2(-0.8*direction,0.8)
 	$Graphics/HealthBar.value=status.health
+
+
+func _on_hurter_hurt(hitter: Variant) -> void:
+	var damage_num=preload("res://scenes/damage_number.tscn").instantiate()
+	var a:float=1/float(status.max_health)
+	damage_num.num=int(a*100)
+	damage_num.position=position
+	get_parent().get_parent().add_child(damage_num)

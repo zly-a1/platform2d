@@ -435,5 +435,3 @@ position = Vector2(0, -5)
 texture = ExtResource("7_v5wyi")
 hframes = 8
 frame = 1
-
-[connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

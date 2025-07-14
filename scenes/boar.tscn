@@ -495,5 +495,3 @@ texture = ExtResource("1_0hpwt")
 hframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 192, 32)
-
-[connection signal="hurt" from="Graphics/Hurter" to="." method="_on_hurter_hurt"]

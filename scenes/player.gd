@@ -246,6 +246,7 @@ func change_state(from:State,to:State)->void:
 			animation_player.play("jump")
 			SoundManager.play_sfx("Jump")
 			velocity.y = JUMP_VELOCITY
+			generate_smoke()
 		
 		State.FALL:
 			animation_player.play("fall")
@@ -265,7 +266,7 @@ func change_state(from:State,to:State)->void:
 				hurttip.hide()
 				hurttip.scale=Vector2(1.0,1.0)
 				)
-			GameProcesser.shake_camera(5.0)
+			GameProcesser.shake_camera(10.0)
 		State.DYING:
 			animation_player.play("dying")
 			GameProcesser.shake_camera(5.0)
@@ -389,3 +390,18 @@ func enable_flash():
 
 func disable_flash():
 	flash_enabled=false
+
+func generate_smoke():
+	var smoke=Sprite2D.new()
+	smoke.position=position
+	smoke.texture=preload("res://assets/Main Characters/Virtual Guy/smoke.png") as CompressedTexture2D
+	smoke.hframes=6
+	smoke.vframes=1
+	smoke.frame=0
+	get_parent().add_child(smoke)
+	var tween=create_tween()
+	tween.tween_property(smoke,"frame",5,0.6)
+	tween=create_tween()
+	tween.tween_property(smoke,"modulate:a",0.0,0.6)
+	await tween.finished
+	smoke.queue_free()

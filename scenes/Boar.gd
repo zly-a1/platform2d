@@ -107,6 +107,7 @@ func change_state(from:State,to:State):
 
 
 func _on_hurter_hurt(hitter):
+	super(hitter)
 	if can_hurt:
 		if status.health>0:
 			status.health-=1

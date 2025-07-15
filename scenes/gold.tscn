@@ -278,7 +278,7 @@ amount = 900.0
 
 [node name="Trampoline24" parent="Puzzles" instance=ExtResource("8_yqlv4")]
 position = Vector2(781, -9)
-rotation = 1.5708
+rotation = 1.57079
 amount = 900.0
 
 [node name="Trampoline22" parent="Puzzles" instance=ExtResource("8_yqlv4")]
@@ -288,18 +288,13 @@ amount = 900.0
 
 [node name="Trampoline25" parent="Puzzles" instance=ExtResource("8_yqlv4")]
 position = Vector2(969, 77)
-rotation = 1.0472
-amount = 1200.0
-
-[node name="Trampoline26" parent="Puzzles" instance=ExtResource("8_yqlv4")]
-position = Vector2(1151, -27)
-rotation = -0.349066
+rotation = 0.676505
 amount = 1200.0
 
 [node name="Trampoline27" parent="Puzzles" instance=ExtResource("8_yqlv4")]
 position = Vector2(1101, -197)
 rotation = 1.5708
-amount = 1100.0
+amount = 1150.0
 
 [node name="Trampoline32" parent="Puzzles" instance=ExtResource("8_yqlv4")]
 position = Vector2(1875, -175)

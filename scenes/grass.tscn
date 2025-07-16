@@ -107,11 +107,12 @@ position = Vector2(181, 976)
 position = Vector2(124.439, 496.999)
 
 [node name="PlayerCamera" type="Camera2D" parent="player"]
+physics_interpolation_mode = 1
 zoom = Vector2(0.8, 0.8)
 limit_left = 80
 limit_top = 80
-limit_right = 1008
-limit_bottom = 592
+limit_right = 1392
+limit_bottom = 1040
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
@@ -121,6 +122,5 @@ drag_left_margin = 0.0
 drag_top_margin = 0.0
 drag_right_margin = 0.0
 drag_bottom_margin = 0.0
-editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("9_j6x2i")
